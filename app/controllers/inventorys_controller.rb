@@ -1,2 +1,0 @@
-class InventorysController < ApplicationController
-end
