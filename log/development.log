@@ -2773,3 +2773,825 @@ Started POST "/recipes/new" for 127.0.0.1 at 2022-09-29 09:37:04 -0500
   
 ActionController::RoutingError (No route matches [POST] "/recipes/new"):
   
+Started GET "/" for 127.0.0.1 at 2022-09-29 09:45:19 -0500
+Processing by RecipesController#public as HTML
+  [1m[36mUser Load (178.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering recipes/public.html.erb within layouts/application
+  [1m[36mRecipe Load (14.6ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."public" = $1[0m  [["public", true]]
+  ↳ app/views/shared/_recipelist.html.erb:2
+  Rendered shared/_recipelist.html.erb (Duration: 232.9ms | Allocations: 1063)
+  Rendered recipes/public.html.erb within layouts/application (Duration: 251.0ms | Allocations: 1317)
+  Rendered layouts/_navbar.html.erb (Duration: 415.2ms | Allocations: 806)
+  Rendered layout layouts/application.html.erb (Duration: 1615.5ms | Allocations: 4923)
+Completed 200 OK in 12621ms (Views: 1700.1ms | ActiveRecord: 3170.9ms | Allocations: 15693)
+
+
+Started GET "/recipes/new" for 127.0.0.1 at 2022-09-29 09:49:00 -0500
+Processing by RecipesController#new as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering recipes/new.html.erb within layouts/application
+  Rendered recipes/new.html.erb within layouts/application (Duration: 526.0ms | Allocations: 6846)
+  Rendered layouts/_navbar.html.erb (Duration: 1.7ms | Allocations: 385)
+  Rendered layout layouts/application.html.erb (Duration: 790.8ms | Allocations: 9455)
+Completed 200 OK in 1552ms (Views: 916.5ms | ActiveRecord: 0.8ms | Allocations: 13144)
+
+
+Started POST "/recipes/new" for 127.0.0.1 at 2022-09-29 09:49:12 -0500
+  
+ActionController::RoutingError (No route matches [POST] "/recipes/new"):
+  
+Started GET "/recipes/new" for 127.0.0.1 at 2022-09-29 09:52:26 -0500
+Processing by RecipesController#new as HTML
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering recipes/new.html.erb within layouts/application
+  Rendered recipes/new.html.erb within layouts/application (Duration: 88.0ms | Allocations: 6939)
+  Rendered layouts/_navbar.html.erb (Duration: 85.5ms | Allocations: 1299)
+  Rendered layout layouts/application.html.erb (Duration: 309.0ms | Allocations: 10971)
+Completed 500 Internal Server Error in 2030ms (ActiveRecord: 1182.0ms | Allocations: 21297)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+   <%= link_to 'All recipes', root_path,  class: 'navbar-brand' %>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <% if user_signed_in? %>
+          <li class="btn-group">
+            <%= link_to 'My recipes', recipes_path,  class: 'btn btn-outline-primary' %>
+            <%= link_to 'My foods', foods_path,  class: 'btn btn-outline-primary'
+            <%= link_to 'Create new recipe', new_recipe_path,  class: 'btn btn-outline-primary' %>
+            <%= link_to 'Inventories', inventories_path,  class: 'btn btn-outline-primary' %>
+            <%= button_to 'sign out', destroy_user_session_path, method: :delete, class: 'btn btn-outline-danger' %>
+          </li>
+        <%else%>
+        <li class="nav-item">
+        <%= link_to 'sign up', new_user_registration_path,  class: 'btn btn-outline-primary' %>
+        <%= link_to 'sign in', new_user_session_path,  class: 'btn btn-outline-primary' %>
+        </li>
+        <%end%>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+):
+1:    <nav class="navbar navbar-expand-lg bg-light">
+2:      <div class="container-fluid">
+3:        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+4:          <span class="navbar-toggler-icon"></span>
+5:        </button>
+6:       <%= link_to 'All recipes', root_path,  class: 'navbar-brand' %>
+7:        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+8:          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+9:            <% if user_signed_in? %>
+10:              <li class="btn-group">
+11:                <%= link_to 'My recipes', recipes_path,  class: 'btn btn-outline-primary' %>
+12:                <%= link_to 'My foods', foods_path,  class: 'btn btn-outline-primary'
+13:                <%= link_to 'Create new recipe', new_recipe_path,  class: 'btn btn-outline-primary' %>
+14:                <%= link_to 'Inventories', inventories_path,  class: 'btn btn-outline-primary' %>
+15:                <%= button_to 'sign out', destroy_user_session_path, method: :delete, class: 'btn btn-outline-danger' %>
+16:              </li>
+17:            <%else%>
+18:            <li class="nav-item">
+19:            <%= link_to 'sign up', new_user_registration_path,  class: 'btn btn-outline-primary' %>
+20:            <%= link_to 'sign in', new_user_session_path,  class: 'btn btn-outline-primary' %>
+21:            </li>
+22:            <%end%>
+23:          </ul>
+24:          <form class="d-flex" role="search">
+25:            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+26:            <button class="btn btn-outline-success" type="submit">Search</button>
+27:          </form>
+28:        </div>
+29:      </div>
+30:    </nav>
+  
+app/views/layouts/_navbar.html.erb:13: syntax error, unexpected '<', expecting ')'
+app/views/layouts/_navbar.html.erb:17: syntax error, unexpected `else', expecting ')'
+app/views/layouts/_navbar.html.erb:22: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:33: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:13: syntax error, unexpected '<', expecting ')'
+app/views/layouts/_navbar.html.erb:17: syntax error, unexpected `else', expecting ')'
+app/views/layouts/_navbar.html.erb:22: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:33: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:13: syntax error, unexpected '<', expecting ')'
+app/views/layouts/_navbar.html.erb:17: syntax error, unexpected `else', expecting ')'
+app/views/layouts/_navbar.html.erb:22: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:33: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:13: syntax error, unexpected '<', expecting ')'
+app/views/layouts/_navbar.html.erb:17: syntax error, unexpected `else', expecting ')'
+app/views/layouts/_navbar.html.erb:22: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:33: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:13: syntax error, unexpected '<', expecting ')'
+app/views/layouts/_navbar.html.erb:17: syntax error, unexpected `else', expecting ')'
+app/views/layouts/_navbar.html.erb:22: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:33: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:13: syntax error, unexpected '<', expecting ')'
+app/views/layouts/_navbar.html.erb:17: syntax error, unexpected `else', expecting ')'
+app/views/layouts/_navbar.html.erb:22: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:33: syntax error, unexpected `end', expecting ')'
+app/views/layouts/application.html.erb:14
+app/controllers/recipes_controller.rb:24:in `block (2 levels) in new'
+app/controllers/recipes_controller.rb:23:in `new'
+Started GET "/recipes/new" for 127.0.0.1 at 2022-09-29 09:53:26 -0500
+Processing by RecipesController#new as HTML
+  [1m[36mUser Load (32.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering recipes/new.html.erb within layouts/application
+  Rendered recipes/new.html.erb within layouts/application (Duration: 32.9ms | Allocations: 5327)
+  Rendered layouts/_navbar.html.erb (Duration: 5.0ms | Allocations: 1285)
+  Rendered layout layouts/application.html.erb (Duration: 118.9ms | Allocations: 8819)
+Completed 500 Internal Server Error in 267ms (ActiveRecord: 32.4ms | Allocations: 10701)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+   <%= link_to 'All recipes', root_path,  class: 'navbar-brand' %>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <% if user_signed_in? %>
+          <li class="btn-group">
+            <%= link_to 'My recipes', recipes_path,  class: 'btn btn-outline-primary' %>
+            <%= link_to 'My foods', foods_path,  class: 'btn btn-outline-primary'
+            <%= link_to 'Create new recipe', new_recipe_path,  class: 'btn btn-outline-primary' %>
+            <%= link_to 'Inventories', inventories_path,  class: 'btn btn-outline-primary' %>
+            <%= button_to 'sign out', destroy_user_session_path, method: :delete, class: 'btn btn-outline-danger' %>
+          </li>
+        <%else%>
+        <li class="nav-item">
+        <%= link_to 'sign up', new_user_registration_path,  class: 'btn btn-outline-primary' %>
+        <%= link_to 'sign in', new_user_session_path,  class: 'btn btn-outline-primary' %>
+        </li>
+        <%end%>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+):
+1:    <nav class="navbar navbar-expand-lg bg-light">
+2:      <div class="container-fluid">
+3:        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+4:          <span class="navbar-toggler-icon"></span>
+5:        </button>
+6:       <%= link_to 'All recipes', root_path,  class: 'navbar-brand' %>
+7:        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+8:          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+9:            <% if user_signed_in? %>
+10:              <li class="btn-group">
+11:                <%= link_to 'My recipes', recipes_path,  class: 'btn btn-outline-primary' %>
+12:                <%= link_to 'My foods', foods_path,  class: 'btn btn-outline-primary'
+13:                <%= link_to 'Create new recipe', new_recipe_path,  class: 'btn btn-outline-primary' %>
+14:                <%= link_to 'Inventories', inventories_path,  class: 'btn btn-outline-primary' %>
+15:                <%= button_to 'sign out', destroy_user_session_path, method: :delete, class: 'btn btn-outline-danger' %>
+16:              </li>
+17:            <%else%>
+18:            <li class="nav-item">
+19:            <%= link_to 'sign up', new_user_registration_path,  class: 'btn btn-outline-primary' %>
+20:            <%= link_to 'sign in', new_user_session_path,  class: 'btn btn-outline-primary' %>
+21:            </li>
+22:            <%end%>
+23:          </ul>
+24:          <form class="d-flex" role="search">
+25:            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+26:            <button class="btn btn-outline-success" type="submit">Search</button>
+27:          </form>
+28:        </div>
+29:      </div>
+30:    </nav>
+  
+app/views/layouts/_navbar.html.erb:13: syntax error, unexpected '<', expecting ')'
+app/views/layouts/_navbar.html.erb:17: syntax error, unexpected `else', expecting ')'
+app/views/layouts/_navbar.html.erb:22: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:33: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:13: syntax error, unexpected '<', expecting ')'
+app/views/layouts/_navbar.html.erb:17: syntax error, unexpected `else', expecting ')'
+app/views/layouts/_navbar.html.erb:22: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:33: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:13: syntax error, unexpected '<', expecting ')'
+app/views/layouts/_navbar.html.erb:17: syntax error, unexpected `else', expecting ')'
+app/views/layouts/_navbar.html.erb:22: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:33: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:13: syntax error, unexpected '<', expecting ')'
+app/views/layouts/_navbar.html.erb:17: syntax error, unexpected `else', expecting ')'
+app/views/layouts/_navbar.html.erb:22: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:33: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:13: syntax error, unexpected '<', expecting ')'
+app/views/layouts/_navbar.html.erb:17: syntax error, unexpected `else', expecting ')'
+app/views/layouts/_navbar.html.erb:22: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:33: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:13: syntax error, unexpected '<', expecting ')'
+app/views/layouts/_navbar.html.erb:17: syntax error, unexpected `else', expecting ')'
+app/views/layouts/_navbar.html.erb:22: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:33: syntax error, unexpected `end', expecting ')'
+app/views/layouts/application.html.erb:14
+app/controllers/recipes_controller.rb:24:in `block (2 levels) in new'
+app/controllers/recipes_controller.rb:23:in `new'
+Started GET "/" for 127.0.0.1 at 2022-09-29 09:54:48 -0500
+Processing by RecipesController#public as HTML
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering recipes/public.html.erb within layouts/application
+  [1m[36mRecipe Load (1.1ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."public" = $1[0m  [["public", true]]
+  ↳ app/views/shared/_recipelist.html.erb:2
+  Rendered shared/_recipelist.html.erb (Duration: 51.0ms | Allocations: 914)
+  Rendered recipes/public.html.erb within layouts/application (Duration: 73.0ms | Allocations: 1129)
+  Rendered layouts/_navbar.html.erb (Duration: 6.6ms | Allocations: 1401)
+  Rendered layout layouts/application.html.erb (Duration: 149.2ms | Allocations: 4738)
+Completed 500 Internal Server Error in 204ms (ActiveRecord: 2.2ms | Allocations: 6525)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+   <%= link_to 'All recipes', root_path,  class: 'navbar-brand' %>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <% if user_signed_in? %>
+          <li class="btn-group">
+            <%= link_to 'My recipes', recipes_path,  class: 'btn btn-outline-primary' %>
+            <%= link_to 'My foods', foods_path,  class: 'btn btn-outline-primary'
+            <%= link_to 'Create new recipe', new_recipe_path,  class: 'btn btn-outline-primary' %>
+            <%= link_to 'Inventories', inventories_path,  class: 'btn btn-outline-primary' %>
+            <%= button_to 'sign out', destroy_user_session_path, method: :delete, class: 'btn btn-outline-danger' %>
+          </li>
+        <%else%>
+        <li class="nav-item">
+        <%= link_to 'sign up', new_user_registration_path,  class: 'btn btn-outline-primary' %>
+        <%= link_to 'sign in', new_user_session_path,  class: 'btn btn-outline-primary' %>
+        </li>
+        <%end%>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+):
+1:    <nav class="navbar navbar-expand-lg bg-light">
+2:      <div class="container-fluid">
+3:        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+4:          <span class="navbar-toggler-icon"></span>
+5:        </button>
+6:       <%= link_to 'All recipes', root_path,  class: 'navbar-brand' %>
+7:        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+8:          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+9:            <% if user_signed_in? %>
+10:              <li class="btn-group">
+11:                <%= link_to 'My recipes', recipes_path,  class: 'btn btn-outline-primary' %>
+12:                <%= link_to 'My foods', foods_path,  class: 'btn btn-outline-primary'
+13:                <%= link_to 'Create new recipe', new_recipe_path,  class: 'btn btn-outline-primary' %>
+14:                <%= link_to 'Inventories', inventories_path,  class: 'btn btn-outline-primary' %>
+15:                <%= button_to 'sign out', destroy_user_session_path, method: :delete, class: 'btn btn-outline-danger' %>
+16:              </li>
+17:            <%else%>
+18:            <li class="nav-item">
+19:            <%= link_to 'sign up', new_user_registration_path,  class: 'btn btn-outline-primary' %>
+20:            <%= link_to 'sign in', new_user_session_path,  class: 'btn btn-outline-primary' %>
+21:            </li>
+22:            <%end%>
+23:          </ul>
+24:          <form class="d-flex" role="search">
+25:            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+26:            <button class="btn btn-outline-success" type="submit">Search</button>
+27:          </form>
+28:        </div>
+29:      </div>
+30:    </nav>
+  
+app/views/layouts/_navbar.html.erb:13: syntax error, unexpected '<', expecting ')'
+app/views/layouts/_navbar.html.erb:17: syntax error, unexpected `else', expecting ')'
+app/views/layouts/_navbar.html.erb:22: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:33: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:13: syntax error, unexpected '<', expecting ')'
+app/views/layouts/_navbar.html.erb:17: syntax error, unexpected `else', expecting ')'
+app/views/layouts/_navbar.html.erb:22: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:33: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:13: syntax error, unexpected '<', expecting ')'
+app/views/layouts/_navbar.html.erb:17: syntax error, unexpected `else', expecting ')'
+app/views/layouts/_navbar.html.erb:22: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:33: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:13: syntax error, unexpected '<', expecting ')'
+app/views/layouts/_navbar.html.erb:17: syntax error, unexpected `else', expecting ')'
+app/views/layouts/_navbar.html.erb:22: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:33: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:13: syntax error, unexpected '<', expecting ')'
+app/views/layouts/_navbar.html.erb:17: syntax error, unexpected `else', expecting ')'
+app/views/layouts/_navbar.html.erb:22: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:33: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:13: syntax error, unexpected '<', expecting ')'
+app/views/layouts/_navbar.html.erb:17: syntax error, unexpected `else', expecting ')'
+app/views/layouts/_navbar.html.erb:22: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:33: syntax error, unexpected `end', expecting ')'
+app/views/layouts/application.html.erb:14
+Started GET "/routes" for 127.0.0.1 at 2022-09-29 09:55:05 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/routes"):
+  
+Started GET "/routes" for 127.0.0.1 at 2022-09-29 09:56:22 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/routes"):
+  
+Started GET "/" for 127.0.0.1 at 2022-09-29 09:56:30 -0500
+Processing by RecipesController#public as HTML
+  [1m[36mUser Load (3.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering recipes/public.html.erb within layouts/application
+  [1m[36mRecipe Load (1.0ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."public" = $1[0m  [["public", true]]
+  ↳ app/views/shared/_recipelist.html.erb:2
+  Rendered shared/_recipelist.html.erb (Duration: 47.7ms | Allocations: 608)
+  Rendered recipes/public.html.erb within layouts/application (Duration: 49.5ms | Allocations: 673)
+  Rendered layouts/_navbar.html.erb (Duration: 4.1ms | Allocations: 1401)
+  Rendered layout layouts/application.html.erb (Duration: 171.7ms | Allocations: 4282)
+Completed 500 Internal Server Error in 572ms (ActiveRecord: 4.7ms | Allocations: 5931)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+   <%= link_to 'All recipes', root_path,  class: 'navbar-brand' %>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <% if user_signed_in? %>
+          <li class="btn-group">
+            <%= link_to 'My recipes', recipes_path,  class: 'btn btn-outline-primary' %>
+            <%= link_to 'My foods', foods_path,  class: 'btn btn-outline-primary'
+            <%= link_to 'Create new recipe', new_recipe_path,  class: 'btn btn-outline-primary' %>
+            <%= link_to 'Inventories', inventories_path,  class: 'btn btn-outline-primary' %>
+            <%= button_to 'sign out', destroy_user_session_path, method: :delete, class: 'btn btn-outline-danger' %>
+          </li>
+        <%else%>
+        <li class="nav-item">
+        <%= link_to 'sign up', new_user_registration_path,  class: 'btn btn-outline-primary' %>
+        <%= link_to 'sign in', new_user_session_path,  class: 'btn btn-outline-primary' %>
+        </li>
+        <%end%>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+):
+1:    <nav class="navbar navbar-expand-lg bg-light">
+2:      <div class="container-fluid">
+3:        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+4:          <span class="navbar-toggler-icon"></span>
+5:        </button>
+6:       <%= link_to 'All recipes', root_path,  class: 'navbar-brand' %>
+7:        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+8:          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+9:            <% if user_signed_in? %>
+10:              <li class="btn-group">
+11:                <%= link_to 'My recipes', recipes_path,  class: 'btn btn-outline-primary' %>
+12:                <%= link_to 'My foods', foods_path,  class: 'btn btn-outline-primary'
+13:                <%= link_to 'Create new recipe', new_recipe_path,  class: 'btn btn-outline-primary' %>
+14:                <%= link_to 'Inventories', inventories_path,  class: 'btn btn-outline-primary' %>
+15:                <%= button_to 'sign out', destroy_user_session_path, method: :delete, class: 'btn btn-outline-danger' %>
+16:              </li>
+17:            <%else%>
+18:            <li class="nav-item">
+19:            <%= link_to 'sign up', new_user_registration_path,  class: 'btn btn-outline-primary' %>
+20:            <%= link_to 'sign in', new_user_session_path,  class: 'btn btn-outline-primary' %>
+21:            </li>
+22:            <%end%>
+23:          </ul>
+24:          <form class="d-flex" role="search">
+25:            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+26:            <button class="btn btn-outline-success" type="submit">Search</button>
+27:          </form>
+28:        </div>
+29:      </div>
+30:    </nav>
+  
+app/views/layouts/_navbar.html.erb:13: syntax error, unexpected '<', expecting ')'
+app/views/layouts/_navbar.html.erb:17: syntax error, unexpected `else', expecting ')'
+app/views/layouts/_navbar.html.erb:22: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:33: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:13: syntax error, unexpected '<', expecting ')'
+app/views/layouts/_navbar.html.erb:17: syntax error, unexpected `else', expecting ')'
+app/views/layouts/_navbar.html.erb:22: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:33: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:13: syntax error, unexpected '<', expecting ')'
+app/views/layouts/_navbar.html.erb:17: syntax error, unexpected `else', expecting ')'
+app/views/layouts/_navbar.html.erb:22: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:33: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:13: syntax error, unexpected '<', expecting ')'
+app/views/layouts/_navbar.html.erb:17: syntax error, unexpected `else', expecting ')'
+app/views/layouts/_navbar.html.erb:22: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:33: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:13: syntax error, unexpected '<', expecting ')'
+app/views/layouts/_navbar.html.erb:17: syntax error, unexpected `else', expecting ')'
+app/views/layouts/_navbar.html.erb:22: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:33: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:13: syntax error, unexpected '<', expecting ')'
+app/views/layouts/_navbar.html.erb:17: syntax error, unexpected `else', expecting ')'
+app/views/layouts/_navbar.html.erb:22: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:33: syntax error, unexpected `end', expecting ')'
+app/views/layouts/application.html.erb:14
+Started GET "/" for 127.0.0.1 at 2022-09-29 09:57:35 -0500
+Processing by RecipesController#public as HTML
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering recipes/public.html.erb within layouts/application
+  [1m[36mRecipe Load (2.0ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."public" = $1[0m  [["public", true]]
+  ↳ app/views/shared/_recipelist.html.erb:2
+  Rendered shared/_recipelist.html.erb (Duration: 78.5ms | Allocations: 987)
+  Rendered recipes/public.html.erb within layouts/application (Duration: 101.2ms | Allocations: 1235)
+  Rendered layouts/_navbar.html.erb (Duration: 16.5ms | Allocations: 1414)
+  Rendered layout layouts/application.html.erb (Duration: 651.5ms | Allocations: 5410)
+Completed 500 Internal Server Error in 1857ms (ActiveRecord: 3.0ms | Allocations: 7589)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+   <%= link_to 'All recipes', root_path,  class: 'navbar-brand' %>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <% if user_signed_in? %>
+          <li class="btn-group">
+            <%= link_to 'My recipes', recipes_path,  class: 'btn btn-outline-primary' %>
+            <%= link_to 'My foods', foods_path,  class: 'btn btn-outline-primary'
+            <%= link_to 'Create new recipe', new_recipe_recipe_food_path,  class: 'btn btn-outline-primary' %>
+            <%= link_to 'Inventories', inventories_path,  class: 'btn btn-outline-primary' %>
+            <%= button_to 'sign out', destroy_user_session_path, method: :delete, class: 'btn btn-outline-danger' %>
+          </li>
+        <%else%>
+        <li class="nav-item">
+        <%= link_to 'sign up', new_user_registration_path,  class: 'btn btn-outline-primary' %>
+        <%= link_to 'sign in', new_user_session_path,  class: 'btn btn-outline-primary' %>
+        </li>
+        <%end%>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+):
+1:    <nav class="navbar navbar-expand-lg bg-light">
+2:      <div class="container-fluid">
+3:        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+4:          <span class="navbar-toggler-icon"></span>
+5:        </button>
+6:       <%= link_to 'All recipes', root_path,  class: 'navbar-brand' %>
+7:        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+8:          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+9:            <% if user_signed_in? %>
+10:              <li class="btn-group">
+11:                <%= link_to 'My recipes', recipes_path,  class: 'btn btn-outline-primary' %>
+12:                <%= link_to 'My foods', foods_path,  class: 'btn btn-outline-primary'
+13:                <%= link_to 'Create new recipe', new_recipe_recipe_food_path,  class: 'btn btn-outline-primary' %>
+14:                <%= link_to 'Inventories', inventories_path,  class: 'btn btn-outline-primary' %>
+15:                <%= button_to 'sign out', destroy_user_session_path, method: :delete, class: 'btn btn-outline-danger' %>
+16:              </li>
+17:            <%else%>
+18:            <li class="nav-item">
+19:            <%= link_to 'sign up', new_user_registration_path,  class: 'btn btn-outline-primary' %>
+20:            <%= link_to 'sign in', new_user_session_path,  class: 'btn btn-outline-primary' %>
+21:            </li>
+22:            <%end%>
+23:          </ul>
+24:          <form class="d-flex" role="search">
+25:            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+26:            <button class="btn btn-outline-success" type="submit">Search</button>
+27:          </form>
+28:        </div>
+29:      </div>
+30:    </nav>
+  
+app/views/layouts/_navbar.html.erb:13: syntax error, unexpected '<', expecting ')'
+app/views/layouts/_navbar.html.erb:17: syntax error, unexpected `else', expecting ')'
+app/views/layouts/_navbar.html.erb:22: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:33: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:13: syntax error, unexpected '<', expecting ')'
+app/views/layouts/_navbar.html.erb:17: syntax error, unexpected `else', expecting ')'
+app/views/layouts/_navbar.html.erb:22: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:33: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:13: syntax error, unexpected '<', expecting ')'
+app/views/layouts/_navbar.html.erb:17: syntax error, unexpected `else', expecting ')'
+app/views/layouts/_navbar.html.erb:22: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:33: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:13: syntax error, unexpected '<', expecting ')'
+app/views/layouts/_navbar.html.erb:17: syntax error, unexpected `else', expecting ')'
+app/views/layouts/_navbar.html.erb:22: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:33: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:13: syntax error, unexpected '<', expecting ')'
+app/views/layouts/_navbar.html.erb:17: syntax error, unexpected `else', expecting ')'
+app/views/layouts/_navbar.html.erb:22: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:33: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:13: syntax error, unexpected '<', expecting ')'
+app/views/layouts/_navbar.html.erb:17: syntax error, unexpected `else', expecting ')'
+app/views/layouts/_navbar.html.erb:22: syntax error, unexpected `end', expecting ')'
+app/views/layouts/_navbar.html.erb:33: syntax error, unexpected `end', expecting ')'
+app/views/layouts/application.html.erb:14
+Started GET "/" for 127.0.0.1 at 2022-09-29 09:58:10 -0500
+Processing by RecipesController#public as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering recipes/public.html.erb within layouts/application
+  [1m[36mRecipe Load (1.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."public" = $1[0m  [["public", true]]
+  ↳ app/views/shared/_recipelist.html.erb:2
+  Rendered shared/_recipelist.html.erb (Duration: 583.2ms | Allocations: 987)
+  Rendered recipes/public.html.erb within layouts/application (Duration: 767.6ms | Allocations: 1235)
+  Rendered layouts/_navbar.html.erb (Duration: 205.2ms | Allocations: 1410)
+  Rendered layout layouts/application.html.erb (Duration: 1707.1ms | Allocations: 5408)
+Completed 500 Internal Server Error in 1959ms (ActiveRecord: 2.0ms | Allocations: 7718)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+   <%= link_to 'All recipes', root_path,  class: 'navbar-brand' %>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <% if user_signed_in? %>
+          <li class="btn-group">
+            <%= link_to 'My recipes', recipes_path,  class: 'btn btn-outline-primary' %>
+            <%= link_to 'My foods', foods_path,  class: 'btn btn-outline-primary'
+            # <%= link_to 'Create new recipe', new_recipe_recipe_food_path,  class: 'btn btn-outline-primary' %>
+            <%= link_to 'Inventories', inventories_path,  class: 'btn btn-outline-primary' %>
+            <%= button_to 'sign out', destroy_user_session_path, method: :delete, class: 'btn btn-outline-danger' %>
+          </li>
+        <%else%>
+        <li class="nav-item">
+        <%= link_to 'sign up', new_user_registration_path,  class: 'btn btn-outline-primary' %>
+        <%= link_to 'sign in', new_user_session_path,  class: 'btn btn-outline-primary' %>
+        </li>
+        <%end%>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+):
+1:    <nav class="navbar navbar-expand-lg bg-light">
+2:      <div class="container-fluid">
+3:        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+4:          <span class="navbar-toggler-icon"></span>
+5:        </button>
+6:       <%= link_to 'All recipes', root_path,  class: 'navbar-brand' %>
+7:        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+8:          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+9:            <% if user_signed_in? %>
+10:              <li class="btn-group">
+11:                <%= link_to 'My recipes', recipes_path,  class: 'btn btn-outline-primary' %>
+12:                <%= link_to 'My foods', foods_path,  class: 'btn btn-outline-primary'
+13:                # <%= link_to 'Create new recipe', new_recipe_recipe_food_path,  class: 'btn btn-outline-primary' %>
+14:                <%= link_to 'Inventories', inventories_path,  class: 'btn btn-outline-primary' %>
+15:                <%= button_to 'sign out', destroy_user_session_path, method: :delete, class: 'btn btn-outline-danger' %>
+16:              </li>
+17:            <%else%>
+18:            <li class="nav-item">
+19:            <%= link_to 'sign up', new_user_registration_path,  class: 'btn btn-outline-primary' %>
+20:            <%= link_to 'sign in', new_user_session_path,  class: 'btn btn-outline-primary' %>
+21:            </li>
+22:            <%end%>
+23:          </ul>
+24:          <form class="d-flex" role="search">
+25:            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+26:            <button class="btn btn-outline-success" type="submit">Search</button>
+27:          </form>
+28:        </div>
+29:      </div>
+30:    </nav>
+  
+app/views/layouts/_navbar.html.erb:14: syntax error, unexpected constant, expecting ')'
+app/views/layouts/_navbar.html.erb:14: syntax error, unexpected local variable or method, expecting ')'
+app/views/layouts/_navbar.html.erb:14: syntax error, unexpected string literal, expecting `do' or '{' or '('
+app/views/layouts/_navbar.html.erb:15: syntax error, unexpected local variable or method, expecting ')'
+app/views/layouts/_navbar.html.erb:15: syntax error, unexpected local variable or method, expecting ')'
+app/views/layouts/_navbar.html.erb:15: syntax error, unexpected string literal, expecting `do' or '{' or '('
+app/views/layouts/_navbar.html.erb:21: unknown regexp option - l
+app/views/layouts/_navbar.html.erb:26: unknown regexp options - btt
+app/views/layouts/_navbar.html.erb:27: syntax error, unexpected '<'
+app/views/layouts/_navbar.html.erb:28: unknown regexp options - dv
+app/views/layouts/_navbar.html.erb:29: syntax error, unexpected '<'
+app/views/layouts/_navbar.html.erb:30: unknown regexp options - av
+app/views/layouts/_navbar.html.erb:33: unterminated string meets end of file
+app/views/layouts/_navbar.html.erb:33: syntax error, unexpected end-of-input, expecting ')'
+app/views/layouts/_navbar.html.erb:14: syntax error, unexpected constant, expecting ')'
+app/views/layouts/_navbar.html.erb:14: syntax error, unexpected local variable or method, expecting ')'
+app/views/layouts/_navbar.html.erb:14: syntax error, unexpected string literal, expecting `do' or '{' or '('
+app/views/layouts/_navbar.html.erb:15: syntax error, unexpected local variable or method, expecting ')'
+app/views/layouts/_navbar.html.erb:15: syntax error, unexpected local variable or method, expecting ')'
+app/views/layouts/_navbar.html.erb:15: syntax error, unexpected string literal, expecting `do' or '{' or '('
+app/views/layouts/_navbar.html.erb:21: unknown regexp option - l
+app/views/layouts/_navbar.html.erb:26: unknown regexp options - btt
+app/views/layouts/_navbar.html.erb:27: syntax error, unexpected '<'
+app/views/layouts/_navbar.html.erb:28: unknown regexp options - dv
+app/views/layouts/_navbar.html.erb:29: syntax error, unexpected '<'
+app/views/layouts/_navbar.html.erb:30: unknown regexp options - av
+app/views/layouts/_navbar.html.erb:33: unterminated string meets end of file
+app/views/layouts/_navbar.html.erb:33: syntax error, unexpected end-of-input, expecting ')'
+app/views/layouts/_navbar.html.erb:14: syntax error, unexpected constant, expecting ')'
+app/views/layouts/_navbar.html.erb:14: syntax error, unexpected local variable or method, expecting ')'
+app/views/layouts/_navbar.html.erb:14: syntax error, unexpected string literal, expecting `do' or '{' or '('
+app/views/layouts/_navbar.html.erb:15: syntax error, unexpected local variable or method, expecting ')'
+app/views/layouts/_navbar.html.erb:15: syntax error, unexpected local variable or method, expecting ')'
+app/views/layouts/_navbar.html.erb:15: syntax error, unexpected string literal, expecting `do' or '{' or '('
+app/views/layouts/_navbar.html.erb:21: unknown regexp option - l
+app/views/layouts/_navbar.html.erb:26: unknown regexp options - btt
+app/views/layouts/_navbar.html.erb:27: syntax error, unexpected '<'
+app/views/layouts/_navbar.html.erb:28: unknown regexp options - dv
+app/views/layouts/_navbar.html.erb:29: syntax error, unexpected '<'
+app/views/layouts/_navbar.html.erb:30: unknown regexp options - av
+app/views/layouts/_navbar.html.erb:33: unterminated string meets end of file
+app/views/layouts/_navbar.html.erb:33: syntax error, unexpected end-of-input, expecting ')'
+app/views/layouts/_navbar.html.erb:14: syntax error, unexpected constant, expecting ')'
+app/views/layouts/_navbar.html.erb:14: syntax error, unexpected local variable or method, expecting ')'
+app/views/layouts/_navbar.html.erb:14: syntax error, unexpected string literal, expecting `do' or '{' or '('
+app/views/layouts/_navbar.html.erb:15: syntax error, unexpected local variable or method, expecting ')'
+app/views/layouts/_navbar.html.erb:15: syntax error, unexpected local variable or method, expecting ')'
+app/views/layouts/_navbar.html.erb:15: syntax error, unexpected string literal, expecting `do' or '{' or '('
+app/views/layouts/_navbar.html.erb:21: unknown regexp option - l
+app/views/layouts/_navbar.html.erb:26: unknown regexp options - btt
+app/views/layouts/_navbar.html.erb:27: syntax error, unexpected '<'
+app/views/layouts/_navbar.html.erb:28: unknown regexp options - dv
+app/views/layouts/_navbar.html.erb:29: syntax error, unexpected '<'
+app/views/layouts/_navbar.html.erb:30: unknown regexp options - av
+app/views/layouts/_navbar.html.erb:33: unterminated string meets end of file
+app/views/layouts/_navbar.html.erb:33: syntax error, unexpected end-of-input, expecting ')'
+app/views/layouts/_navbar.html.erb:14: syntax error, unexpected constant, expecting ')'
+app/views/layouts/_navbar.html.erb:14: syntax error, unexpected local variable or method, expecting ')'
+app/views/layouts/_navbar.html.erb:14: syntax error, unexpected string literal, expecting `do' or '{' or '('
+app/views/layouts/_navbar.html.erb:15: syntax error, unexpected local variable or method, expecting ')'
+app/views/layouts/_navbar.html.erb:15: syntax error, unexpected local variable or method, expecting ')'
+app/views/layouts/_navbar.html.erb:15: syntax error, unexpected string literal, expecting `do' or '{' or '('
+app/views/layouts/_navbar.html.erb:21: unknown regexp option - l
+app/views/layouts/_navbar.html.erb:26: unknown regexp options - btt
+app/views/layouts/_navbar.html.erb:27: syntax error, unexpected '<'
+app/views/layouts/_navbar.html.erb:28: unknown regexp options - dv
+app/views/layouts/_navbar.html.erb:29: syntax error, unexpected '<'
+app/views/layouts/_navbar.html.erb:30: unknown regexp options - av
+app/views/layouts/_navbar.html.erb:33: unterminated string meets end of file
+app/views/layouts/_navbar.html.erb:33: syntax error, unexpected end-of-input, expecting ')'
+app/views/layouts/_navbar.html.erb:14: syntax error, unexpected constant, expecting ')'
+app/views/layouts/_navbar.html.erb:14: syntax error, unexpected local variable or method, expecting ')'
+app/views/layouts/_navbar.html.erb:14: syntax error, unexpected string literal, expecting `do' or '{' or '('
+app/views/layouts/_navbar.html.erb:15: syntax error, unexpected local variable or method, expecting ')'
+app/views/layouts/_navbar.html.erb:15: syntax error, unexpected local variable or method, expecting ')'
+app/views/layouts/_navbar.html.erb:15: syntax error, unexpected string literal, expecting `do' or '{' or '('
+app/views/layouts/_navbar.html.erb:21: unknown regexp option - l
+app/views/layouts/_navbar.html.erb:26: unknown regexp options - btt
+app/views/layouts/_navbar.html.erb:27: syntax error, unexpected '<'
+app/views/layouts/_navbar.html.erb:28: unknown regexp options - dv
+app/views/layouts/_navbar.html.erb:29: syntax error, unexpected '<'
+app/views/layouts/_navbar.html.erb:30: unknown regexp options - av
+app/views/layouts/_navbar.html.erb:33: unterminated string meets end of file
+app/views/layouts/_navbar.html.erb:33: syntax error, unexpected end-of-input, expecting ')'
+app/views/layouts/application.html.erb:14
+Started GET "/" for 127.0.0.1 at 2022-09-29 09:59:51 -0500
+Processing by RecipesController#public as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering recipes/public.html.erb within layouts/application
+  [1m[36mRecipe Load (1.0ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."public" = $1[0m  [["public", true]]
+  ↳ app/views/shared/_recipelist.html.erb:2
+  Rendered shared/_recipelist.html.erb (Duration: 1057.1ms | Allocations: 993)
+  Rendered recipes/public.html.erb within layouts/application (Duration: 1126.4ms | Allocations: 1241)
+  Rendered layouts/_navbar.html.erb (Duration: 7.7ms | Allocations: 793)
+  Rendered layout layouts/application.html.erb (Duration: 2977.9ms | Allocations: 4822)
+Completed 200 OK in 4443ms (Views: 3249.0ms | ActiveRecord: 1.7ms | Allocations: 7274)
+
+
+Started GET "/recipes/new" for 127.0.0.1 at 2022-09-29 10:00:07 -0500
+Processing by RecipesController#new as HTML
+  [1m[36mUser Load (68.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering recipes/new.html.erb within layouts/application
+  Rendered recipes/new.html.erb within layouts/application (Duration: 311.1ms | Allocations: 5822)
+  Rendered layouts/_navbar.html.erb (Duration: 8.1ms | Allocations: 385)
+  Rendered layout layouts/application.html.erb (Duration: 1250.4ms | Allocations: 8515)
+Completed 200 OK in 1704ms (Views: 1550.5ms | ActiveRecord: 68.0ms | Allocations: 10390)
+
+
+Started POST "/recipes/new" for 127.0.0.1 at 2022-09-29 10:00:20 -0500
+  
+ActionController::RoutingError (No route matches [POST] "/recipes/new"):
+  
+Started POST "/recipes/new" for 127.0.0.1 at 2022-09-29 10:00:39 -0500
+  
+ActionController::RoutingError (No route matches [POST] "/recipes/new"):
+  
+Started GET "/recipes/new" for 127.0.0.1 at 2022-09-29 10:00:46 -0500
+Processing by RecipesController#new as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering recipes/new.html.erb within layouts/application
+  Rendered recipes/new.html.erb within layouts/application (Duration: 31.9ms | Allocations: 5914)
+  Rendered layouts/_navbar.html.erb (Duration: 5.5ms | Allocations: 796)
+  Rendered layout layouts/application.html.erb (Duration: 597.7ms | Allocations: 9474)
+Completed 200 OK in 756ms (Views: 700.6ms | ActiveRecord: 0.8ms | Allocations: 11658)
+
+
+Started GET "/foods" for 127.0.0.1 at 2022-09-29 10:00:59 -0500
+Processing by FoodsController#index as HTML
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering foods/index.html.erb within layouts/application
+  [1m[36mFood Load (84.9ms)[0m  [1m[34mSELECT "foods".* FROM "foods"[0m
+  ↳ app/views/foods/index.html.erb:16
+  Rendered foods/index.html.erb within layouts/application (Duration: 129.5ms | Allocations: 1089)
+  Rendered layouts/_navbar.html.erb (Duration: 4.4ms | Allocations: 475)
+  Rendered layout layouts/application.html.erb (Duration: 348.5ms | Allocations: 4005)
+Completed 200 OK in 1145ms (Views: 723.5ms | ActiveRecord: 85.9ms | Allocations: 8163)
+
+
+Started GET "/inventories" for 127.0.0.1 at 2022-09-29 10:01:08 -0500
+Processing by InventoriesController#index as HTML
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering inventories/index.html.erb within layouts/application
+  [1m[36mInventory Exists? (75.9ms)[0m  [1m[34mSELECT 1 AS one FROM "inventories" WHERE "inventories"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  ↳ app/views/inventories/index.html.erb:2
+  [1m[36mInventory Load (24.2ms)[0m  [1m[34mSELECT "inventories".* FROM "inventories" WHERE "inventories"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/inventories/index.html.erb:3
+  Rendered inventories/index.html.erb within layouts/application (Duration: 952.1ms | Allocations: 5368)
+  Rendered layouts/_navbar.html.erb (Duration: 1.3ms | Allocations: 446)
+  Rendered layout layouts/application.html.erb (Duration: 1305.9ms | Allocations: 8228)
+Completed 200 OK in 1491ms (Views: 1160.2ms | ActiveRecord: 188.2ms | Allocations: 12560)
+
+
+Started POST "/recipes/new" for 127.0.0.1 at 2022-09-29 10:01:22 -0500
+  
+ActionController::RoutingError (No route matches [POST] "/recipes/new"):
+  
+Started GET "/recipes/new" for 127.0.0.1 at 2022-09-29 10:13:51 -0500
+Started GET "/recipes/new" for 127.0.0.1 at 2022-09-29 10:13:51 -0500
+Processing by RecipesController#new as HTML
+Processing by RecipesController#new as HTML
+  [1m[36mUser Load (92.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  [1m[36mUser Load (693.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering recipes/new.html.erb within layouts/application
+  Rendered recipes/new.html.erb within layouts/application (Duration: 354.1ms | Allocations: 5376)
+  Rendering layout layouts/application.html.erb
+  Rendering recipes/new.html.erb within layouts/application
+  Rendered recipes/new.html.erb within layouts/application (Duration: 121.9ms | Allocations: 5326)
+  Rendered layouts/_navbar.html.erb (Duration: 86.8ms | Allocations: 429)
+  Rendered layout layouts/application.html.erb (Duration: 864.5ms | Allocations: 16210)
+Completed 200 OK in 5489ms (Views: 1164.8ms | ActiveRecord: 1239.1ms | Allocations: 23142)
+
+
+  Rendered layouts/_navbar.html.erb (Duration: 3.7ms | Allocations: 423)
+  Rendered layout layouts/application.html.erb (Duration: 622.3ms | Allocations: 10953)
+Completed 200 OK in 7223ms (Views: 1010.3ms | ActiveRecord: 1650.0ms | Allocations: 26524)
+
+
+Started GET "/recipes/new" for 127.0.0.1 at 2022-09-29 10:14:50 -0500
+Processing by RecipesController#new as HTML
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering recipes/new.html.erb within layouts/application
+  Rendered recipes/new.html.erb within layouts/application (Duration: 395.8ms | Allocations: 5915)
+  Rendered layouts/_navbar.html.erb (Duration: 77.7ms | Allocations: 798)
+  Rendered layout layouts/application.html.erb (Duration: 802.8ms | Allocations: 9458)
+Completed 200 OK in 2728ms (Views: 2271.9ms | ActiveRecord: 1.0ms | Allocations: 11801)
+
+
