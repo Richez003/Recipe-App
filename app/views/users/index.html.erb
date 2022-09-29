@@ -1,0 +1,12 @@
+<% if user_signed_in? %>
+  <p class='alert alert-info'>Welcome <%= current_user.email%></p>
+
+<%end%>
+<h3>This is the list of our users:</h3>
+<ul class='card'>
+<% @users.each do |user|%>
+  <li  ><%= user.email %></li>
+<%end%>
+</ul>
+
+<%= link_to 'sign in', new_user_session_path %>

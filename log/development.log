@@ -1,0 +1,1328 @@
+  [1m[35m (16175.3ms)[0m  [1m[35mCREATE DATABASE "my_recipe_development" ENCODING = 'unicode'[0m
+  [1m[35m (42131.2ms)[0m  [1m[35mCREATE DATABASE "my_recipe_test" ENCODING = 'unicode'[0m
+  [1m[35m (1381.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (213.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (60.8ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7283300514316712970)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (6.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20220928201428)
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (357.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "name" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (31.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20220928201428"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateFoods (20220928202137)
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (151.2ms)[0m  [1m[35mCREATE TABLE "foods" ("id" bigserial primary key, "name" character varying, "measurement_unit" integer, "price" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20220928202137"]]
+  [1m[36mTRANSACTION (20.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateInventories (20220928202223)
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (116.6ms)[0m  [1m[35mCREATE TABLE "inventories" ("id" bigserial primary key, "name" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (1.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20220928202223"]]
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateRecipeFoods (20220928202400)
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (91.1ms)[0m  [1m[35mCREATE TABLE "recipe_foods" ("id" bigserial primary key, "qauntity" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (2.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20220928202400"]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateRecipes (20220928202755)
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (131.9ms)[0m  [1m[35mCREATE TABLE "recipes" ("id" bigserial primary key, "name" character varying, "preparation_time" character varying, "cooking_time" character varying, "description" character varying, "public" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20220928202755"]]
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateInventoryFoods (20220928202859)
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (37.9ms)[0m  [1m[35mCREATE TABLE "inventory_foods" ("id" bigserial primary key, "qauntity" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (4.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20220928202859"]]
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddUserToInventory (20220928203133)
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (11.0ms)[0m  [1m[35mALTER TABLE "inventories" ADD "user_id" bigint NOT NULL[0m
+  [1m[35m (55.3ms)[0m  [1m[35mCREATE INDEX "index_inventories_on_user_id" ON "inventories" ("user_id")[0m
+  [1m[35m (213.4ms)[0m  [1m[35mALTER TABLE "inventories" ADD CONSTRAINT "fk_rails_6642cbdd87"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20220928203133"]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddUserToRecipe (20220928203237)
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (71.5ms)[0m  [1m[35mALTER TABLE "recipes" ADD "user_id" bigint NOT NULL[0m
+  [1m[35m (53.5ms)[0m  [1m[35mCREATE INDEX "index_recipes_on_user_id" ON "recipes" ("user_id")[0m
+  [1m[35m (8.2ms)[0m  [1m[35mALTER TABLE "recipes" ADD CONSTRAINT "fk_rails_9606fce865"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[36mActiveRecord::SchemaMigration Create (1.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20220928203237"]]
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddUserToFood (20220928203350)
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.8ms)[0m  [1m[35mALTER TABLE "foods" ADD "user_id" bigint NOT NULL[0m
+  [1m[35m (39.2ms)[0m  [1m[35mCREATE INDEX "index_foods_on_user_id" ON "foods" ("user_id")[0m
+  [1m[35m (8.3ms)[0m  [1m[35mALTER TABLE "foods" ADD CONSTRAINT "fk_rails_541e2e5c7b"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[36mActiveRecord::SchemaMigration Create (1.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20220928203350"]]
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddInventoryToIventoryFood (20220928203508)
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (148.1ms)[0m  [1m[35mALTER TABLE "iventory_foods" ADD "inventory_id" bigint NOT NULL[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT pg_advisory_unlock(7283300514316712970)[0m
+  [1m[35m (45.7ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7283300514316712970)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (5.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddFoodToIventoryFood (20220928203632)
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (118.1ms)[0m  [1m[35mALTER TABLE "iventory_foods" ADD "food_id" bigint NOT NULL[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(7283300514316712970)[0m
+  [1m[35m (31.6ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7283300514316712970)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (4.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddFoodToRecipeFood (20220928203742)
+  [1m[36mTRANSACTION (12.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (219.7ms)[0m  [1m[35mALTER TABLE "recipe_foods" ADD "food_id" bigint NOT NULL[0m
+  [1m[35m (152.1ms)[0m  [1m[35mCREATE INDEX "index_recipe_foods_on_food_id" ON "recipe_foods" ("food_id")[0m
+  [1m[35m (404.9ms)[0m  [1m[35mALTER TABLE "recipe_foods" ADD CONSTRAINT "fk_rails_cef9648c35"
+FOREIGN KEY ("food_id")
+  REFERENCES "foods" ("id")
+[0m
+  [1m[36mActiveRecord::SchemaMigration Create (94.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20220928203742"]]
+  [1m[36mTRANSACTION (4.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddRecipeToRecipeFood (20220928204045)
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (6.2ms)[0m  [1m[35mALTER TABLE "recipe_foods" ADD "recipe_id" bigint NOT NULL[0m
+  [1m[35m (117.0ms)[0m  [1m[35mCREATE INDEX "index_recipe_foods_on_recipe_id" ON "recipe_foods" ("recipe_id")[0m
+  [1m[35m (14.6ms)[0m  [1m[35mALTER TABLE "recipe_foods" ADD CONSTRAINT "fk_rails_b279eaba63"
+FOREIGN KEY ("recipe_id")
+  REFERENCES "recipes" ("id")
+[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20220928204045"]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddInventoryToInventoryFood (20220928205531)
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.6ms)[0m  [1m[35mALTER TABLE "inventory_foods" ADD "inventory_id" bigint NOT NULL[0m
+  [1m[35m (53.1ms)[0m  [1m[35mCREATE INDEX "index_inventory_foods_on_inventory_id" ON "inventory_foods" ("inventory_id")[0m
+  [1m[35m (282.6ms)[0m  [1m[35mALTER TABLE "inventory_foods" ADD CONSTRAINT "fk_rails_d946fa9427"
+FOREIGN KEY ("inventory_id")
+  REFERENCES "inventories" ("id")
+[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20220928205531"]]
+  [1m[36mTRANSACTION (3.8ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddFoodToInventoryFood (20220928205627)
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (7.7ms)[0m  [1m[35mALTER TABLE "inventory_foods" ADD "food_id" bigint NOT NULL[0m
+  [1m[35m (80.7ms)[0m  [1m[35mCREATE INDEX "index_inventory_foods_on_food_id" ON "inventory_foods" ("food_id")[0m
+  [1m[35m (7.9ms)[0m  [1m[35mALTER TABLE "inventory_foods" ADD CONSTRAINT "fk_rails_bac85223fc"
+FOREIGN KEY ("food_id")
+  REFERENCES "foods" ("id")
+[0m
+  [1m[36mActiveRecord::SchemaMigration Create (10.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20220928205627"]]
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (11.8ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (4.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (313.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2022-09-28 20:57:11.465883"], ["updated_at", "2022-09-28 20:57:11.465883"]]
+  [1m[36mTRANSACTION (61.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(7283300514316712970)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (4.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (34.8ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7283300514316712970)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (42.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddDeviseToUsers (20220928212806)
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (107.9ms)[0m  [1m[35mALTER TABLE "users" ADD "email" character varying DEFAULT '' NOT NULL[0m
+  [1m[35m (1.2ms)[0m  [1m[35mALTER TABLE "users" ADD "encrypted_password" character varying DEFAULT '' NOT NULL[0m
+  [1m[35m (2.2ms)[0m  [1m[35mALTER TABLE "users" ADD "reset_password_token" character varying[0m
+  [1m[35m (6.2ms)[0m  [1m[35mALTER TABLE "users" ADD "reset_password_sent_at" timestamp(6)[0m
+  [1m[35m (1.3ms)[0m  [1m[35mALTER TABLE "users" ADD "remember_created_at" timestamp(6)[0m
+  [1m[35m (22.8ms)[0m  [1m[35mALTER TABLE "users" ADD "confirmation_token" character varying[0m
+  [1m[35m (1.3ms)[0m  [1m[35mALTER TABLE "users" ADD "confirmed_at" timestamp(6)[0m
+  [1m[35m (0.9ms)[0m  [1m[35mALTER TABLE "users" ADD "confirmation_sent_at" timestamp(6)[0m
+  [1m[35m (1.0ms)[0m  [1m[35mALTER TABLE "users" ADD "unconfirmed_email" character varying[0m
+  [1m[35m (83.9ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (106.9ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (30.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20220928212806"]]
+  [1m[36mTRANSACTION (7.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (23.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT pg_advisory_unlock(7283300514316712970)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (9.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2022-09-28 16:36:00 -0500
+  [1m[36mActiveRecord::SchemaMigration Pluck (17.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  Rendered users/index.html.erb within layouts/application (Duration: 404.7ms | Allocations: 430)
+  Rendered layout layouts/application.html.erb (Duration: 100032.9ms | Allocations: 83551)
+Completed 500 Internal Server Error in 104417ms (ActiveRecord: 0.0ms | Allocations: 88824)
+
+
+  
+ActionView::Template::Error (Permission denied @ rb_file_s_rename - (C:/Users/ZUZU/Desktop/New folder (3)/my_recipe/tmp/cache/assets/sprockets/v4.0.0/HN/HN0ICa-NqloPBhBLCAniLp1jbd1rVUJ8MndNYe6R-oc.cache.24060.4184.729308, C:/Users/ZUZU/Desktop/New folder (3)/my_recipe/tmp/cache/assets/sprockets/v4.0.0/HN/HN0ICa-NqloPBhBLCAniLp1jbd1rVUJ8MndNYe6R-oc.cache)):
+  
+sprockets (4.1.1) lib/sprockets/path_utils.rb:362:in `rename'
+sprockets (4.1.1) lib/sprockets/path_utils.rb:362:in `atomic_write'
+sprockets (4.1.1) lib/sprockets/cache/file_store.rb:112:in `set'
+sprockets (4.1.1) lib/sprockets/cache.rb:227:in `set'
+sprockets (4.1.1) lib/sprockets/cache.rb:143:in `set'
+sprockets (4.1.1) lib/sprockets/loader.rb:341:in `fetch_asset_from_dependency_cache'
+sprockets (4.1.1) lib/sprockets/loader.rb:43:in `load'
+sprockets (4.1.1) lib/sprockets/cached_environment.rb:44:in `block in load'
+sprockets (4.1.1) lib/sprockets/cached_environment.rb:44:in `fetch'
+sprockets (4.1.1) lib/sprockets/cached_environment.rb:44:in `load'
+sprockets (4.1.1) lib/sprockets/bundle.rb:27:in `call'
+sprockets (4.1.1) lib/sprockets/processor_utils.rb:84:in `call_processor'
+sprockets (4.1.1) lib/sprockets/processor_utils.rb:66:in `block in call_processors'
+sprockets (4.1.1) lib/sprockets/processor_utils.rb:65:in `reverse_each'
+sprockets (4.1.1) lib/sprockets/processor_utils.rb:65:in `call_processors'
+sprockets (4.1.1) lib/sprockets/loader.rb:182:in `load_from_unloaded'
+sprockets (4.1.1) lib/sprockets/loader.rb:59:in `block in load'
+sprockets (4.1.1) lib/sprockets/loader.rb:337:in `fetch_asset_from_dependency_cache'
+sprockets (4.1.1) lib/sprockets/loader.rb:43:in `load'
+sprockets (4.1.1) lib/sprockets/cached_environment.rb:44:in `block in load'
+sprockets (4.1.1) lib/sprockets/cached_environment.rb:44:in `fetch'
+sprockets (4.1.1) lib/sprockets/cached_environment.rb:44:in `load'
+sprockets (4.1.1) lib/sprockets/bundle.rb:32:in `block in call'
+C:/Ruby31-x64/lib/ruby/3.1.0/set.rb:511:in `each_key'
+C:/Ruby31-x64/lib/ruby/3.1.0/set.rb:511:in `each'
+sprockets (4.1.1) lib/sprockets/bundle.rb:31:in `call'
+sprockets (4.1.1) lib/sprockets/processor_utils.rb:84:in `call_processor'
+sprockets (4.1.1) lib/sprockets/processor_utils.rb:66:in `block in call_processors'
+sprockets (4.1.1) lib/sprockets/processor_utils.rb:65:in `reverse_each'
+sprockets (4.1.1) lib/sprockets/processor_utils.rb:65:in `call_processors'
+sprockets (4.1.1) lib/sprockets/loader.rb:182:in `load_from_unloaded'
+sprockets (4.1.1) lib/sprockets/loader.rb:59:in `block in load'
+sprockets (4.1.1) lib/sprockets/loader.rb:337:in `fetch_asset_from_dependency_cache'
+sprockets (4.1.1) lib/sprockets/loader.rb:43:in `load'
+sprockets (4.1.1) lib/sprockets/cached_environment.rb:44:in `block in load'
+sprockets (4.1.1) lib/sprockets/cached_environment.rb:44:in `fetch'
+sprockets (4.1.1) lib/sprockets/cached_environment.rb:44:in `load'
+sprockets (4.1.1) lib/sprockets/base.rb:81:in `find_asset'
+sprockets (4.1.1) lib/sprockets/base.rb:88:in `find_all_linked_assets'
+sprockets (4.1.1) lib/sprockets/manifest.rb:125:in `each'
+sprockets (4.1.1) lib/sprockets/manifest.rb:125:in `to_a'
+sprockets (4.1.1) lib/sprockets/manifest.rb:125:in `block (2 levels) in find'
+concurrent-ruby (1.1.10) lib/concurrent-ruby/concurrent/executor/safe_task_executor.rb:24:in `block in execute'
+concurrent-ruby (1.1.10) lib/concurrent-ruby/concurrent/synchronization/mutex_lockable_object.rb:47:in `block in synchronize'
+concurrent-ruby (1.1.10) lib/concurrent-ruby/concurrent/synchronization/mutex_lockable_object.rb:47:in `synchronize'
+concurrent-ruby (1.1.10) lib/concurrent-ruby/concurrent/synchronization/mutex_lockable_object.rb:47:in `synchronize'
+concurrent-ruby (1.1.10) lib/concurrent-ruby/concurrent/executor/safe_task_executor.rb:22:in `execute'
+concurrent-ruby (1.1.10) lib/concurrent-ruby/concurrent/promise.rb:564:in `block in realize'
+concurrent-ruby (1.1.10) lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:352:in `run_task'
+concurrent-ruby (1.1.10) lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:343:in `block (3 levels) in create_worker'
+concurrent-ruby (1.1.10) lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:334:in `loop'
+concurrent-ruby (1.1.10) lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:334:in `block (2 levels) in create_worker'
+concurrent-ruby (1.1.10) lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:333:in `catch'
+concurrent-ruby (1.1.10) lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:333:in `block in create_worker'
+Started GET "/" for 127.0.0.1 at 2022-09-28 16:39:48 -0500
+Started GET "/" for 127.0.0.1 at 2022-09-28 16:39:56 -0500
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  Rendered users/index.html.erb within layouts/application (Duration: 0.1ms | Allocations: 7)
+Started GET "/" for 127.0.0.1 at 2022-09-28 16:40:00 -0500
+Processing by UsersController#index as HTML
+Started GET "/" for 127.0.0.1 at 2022-09-28 16:40:03 -0500
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  Rendered users/index.html.erb within layouts/application (Duration: 112.8ms | Allocations: 301)
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+Started GET "/" for 127.0.0.1 at 2022-09-28 16:40:16 -0500
+  Rendering users/index.html.erb within layouts/application
+  Rendered users/index.html.erb within layouts/application (Duration: 0.1ms | Allocations: 7)
+  Rendered layout layouts/application.html.erb (Duration: 35202.6ms | Allocations: 43257)
+Completed 200 OK in 39730ms (Views: 39717.9ms | ActiveRecord: 0.0ms | Allocations: 43837)
+
+
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  Rendered users/index.html.erb within layouts/application (Duration: 0.1ms | Allocations: 7)
+  Rendered layout layouts/application.html.erb (Duration: 1017.9ms | Allocations: 3937)
+Completed 200 OK in 2141ms (Views: 2133.0ms | ActiveRecord: 0.0ms | Allocations: 6035)
+
+
+  Rendered layout layouts/application.html.erb (Duration: 43794.9ms | Allocations: 37449)
+Completed 200 OK in 43859ms (Views: 43840.9ms | ActiveRecord: 0.0ms | Allocations: 38739)
+
+
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  Rendered users/index.html.erb within layouts/application (Duration: 0.2ms | Allocations: 7)
+Started GET "/" for 127.0.0.1 at 2022-09-28 16:40:49 -0500
+  Rendered layout layouts/application.html.erb (Duration: 486.3ms | Allocations: 5744)
+Completed 200 OK in 783ms (Views: 728.5ms | ActiveRecord: 0.0ms | Allocations: 7568)
+
+
+  Rendered layout layouts/application.html.erb (Duration: 33934.6ms | Allocations: 35985)
+Completed 200 OK in 37875ms (Views: 37839.5ms | ActiveRecord: 0.0ms | Allocations: 36967)
+
+
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  Rendered users/index.html.erb within layouts/application (Duration: 0.1ms | Allocations: 7)
+  Rendered layout layouts/application.html.erb (Duration: 65.6ms | Allocations: 1249)
+Completed 200 OK in 198ms (Views: 173.4ms | ActiveRecord: 0.0ms | Allocations: 1657)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2022-09-28 16:41:08 -0500
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 18.9ms | Allocations: 754)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 3155.1ms | Allocations: 8260)
+  Rendered layout layouts/application.html.erb (Duration: 3503.9ms | Allocations: 9652)
+Completed 200 OK in 5240ms (Views: 4465.7ms | ActiveRecord: 556.0ms | Allocations: 19164)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2022-09-28 16:41:43 -0500
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 2.1ms | Allocations: 200)
+  Rendered devise/shared/_links.html.erb (Duration: 1.5ms | Allocations: 189)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 333.7ms | Allocations: 2188)
+  Rendered layout layouts/application.html.erb (Duration: 512.9ms | Allocations: 3591)
+Completed 200 OK in 861ms (Views: 843.8ms | ActiveRecord: 0.0ms | Allocations: 4840)
+
+
+Started POST "/users" for 127.0.0.1 at 2022-09-28 16:42:05 -0500
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"richemonday@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[36mTRANSACTION (11.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (135.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "richemonday@gmail.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (204.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "confirmation_token", "confirmed_at", "confirmation_sent_at", "unconfirmed_email") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["name", nil], ["created_at", "2022-09-28 21:42:14.815657"], ["updated_at", "2022-09-28 21:42:14.815657"], ["email", "richemonday@gmail.com"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["confirmation_token", "[FILTERED]"], ["confirmed_at", nil], ["confirmation_sent_at", "2022-09-28 21:42:14.820924"], ["unconfirmed_email", nil]]
+  [1m[36mTRANSACTION (3.8ms)[0m  [1m[35mCOMMIT[0m
+  Rendering devise/mailer/confirmation_instructions.html.erb
+  Rendered devise/mailer/confirmation_instructions.html.erb (Duration: 4.3ms | Allocations: 350)
+Devise::Mailer#confirmation_instructions: processed outbound mail in 899.5ms
+Delivered mail 6334bfc2dbcc0_10585ff0277ac@LAPTOP-H72U8CMC.mail (12102.6ms)
+Date: Wed, 28 Sep 2022 16:42:26 -0500
+From: please-change-me-at-config-initializers-devise@example.com
+Reply-To: please-change-me-at-config-initializers-devise@example.com
+To: richemonday@gmail.com
+Message-ID: <6334bfc2dbcc0_10585ff0277ac@LAPTOP-H72U8CMC.mail>
+Subject: Confirmation instructions
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<p>Welcome richemonday@gmail.com!</p>
+
+<p>You can confirm your account email through the link below:</p>
+
+<p><a href="http://localhost:3000/users/confirmation?confirmation_token=vtztyzw6Niwp9-ozqWZe">Confirm my account</a></p>
+
+Redirected to http://127.0.0.1:3000/
+Completed 302 Found in 31644ms (ActiveRecord: 354.4ms | Allocations: 37871)
+
+
+Started GET "/" for 127.0.0.1 at 2022-09-28 16:42:39 -0500
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  Rendered users/index.html.erb within layouts/application (Duration: 0.2ms | Allocations: 9)
+  Rendered layout layouts/application.html.erb (Duration: 167.9ms | Allocations: 1364)
+Completed 200 OK in 341ms (Views: 299.6ms | ActiveRecord: 0.0ms | Allocations: 1987)
+
+
+Started GET "/users/confirmation?confirmation_token=[FILTERED]" for ::1 at 2022-09-28 16:44:10 -0500
+Processing by Devise::ConfirmationsController#show as HTML
+  Parameters: {"confirmation_token"=>"[FILTERED]"}
+  [1m[36mUser Load (12.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."confirmation_token" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["confirmation_token", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Update (42.7ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = $1, "confirmed_at" = $2 WHERE "users"."id" = $3[0m  [["updated_at", "2022-09-28 21:44:13.047727"], ["confirmed_at", "2022-09-28 21:44:13.046276"], ["id", 1]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/users/sign_in
+Completed 302 Found in 449ms (ActiveRecord: 57.3ms | Allocations: 6031)
+
+
+Started GET "/users/sign_in" for ::1 at 2022-09-28 16:44:14 -0500
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.8ms | Allocations: 187)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 49.6ms | Allocations: 1352)
+  Rendered layout layouts/application.html.erb (Duration: 115.6ms | Allocations: 2672)
+Completed 200 OK in 259ms (Views: 201.6ms | ActiveRecord: 0.0ms | Allocations: 3374)
+
+
+Started POST "/users/sign_in" for ::1 at 2022-09-28 16:44:44 -0500
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"richemonday@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (12.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "richemonday@gmail.com"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 845ms (ActiveRecord: 12.1ms | Allocations: 2677)
+
+
+Started GET "/" for ::1 at 2022-09-28 16:44:46 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (3.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  Rendered users/index.html.erb within layouts/application (Duration: 0.1ms | Allocations: 7)
+  Rendered layout layouts/application.html.erb (Duration: 75.5ms | Allocations: 1244)
+Completed 200 OK in 147ms (Views: 89.8ms | ActiveRecord: 3.7ms | Allocations: 2520)
+
+
+Started GET "/users/sign_in" for ::1 at 2022-09-28 16:50:28 -0500
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mUser Load (8.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 1159ms (ActiveRecord: 58.2ms | Allocations: 4665)
+
+
+Started GET "/users/sign_in" for ::1 at 2022-09-28 16:50:39 -0500
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 751ms (ActiveRecord: 1.3ms | Allocations: 1591)
+
+
+Started GET "/" for ::1 at 2022-09-28 16:50:43 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (4.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  Rendered users/index.html.erb within layouts/application (Duration: 3.3ms | Allocations: 103)
+  Rendered layout layouts/application.html.erb (Duration: 263.5ms | Allocations: 1727)
+Completed 200 OK in 651ms (Views: 474.1ms | ActiveRecord: 4.5ms | Allocations: 3554)
+
+
+Started GET "/users/sign_up" for ::1 at 2022-09-28 16:51:01 -0500
+Processing by Devise::RegistrationsController#new as HTML
+  [1m[36mUser Load (7.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 501ms (ActiveRecord: 7.9ms | Allocations: 1833)
+
+
+Started GET "/" for ::1 at 2022-09-28 16:51:04 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  Rendered users/index.html.erb within layouts/application (Duration: 0.1ms | Allocations: 7)
+  Rendered layout layouts/application.html.erb (Duration: 47.8ms | Allocations: 1241)
+Completed 200 OK in 101ms (Views: 78.3ms | ActiveRecord: 0.9ms | Allocations: 2551)
+
+
+Started GET "/" for ::1 at 2022-09-28 16:59:06 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (33.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (3.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:7
+  Rendered users/index.html.erb within layouts/application (Duration: 665.6ms | Allocations: 1074)
+  Rendered layout layouts/application.html.erb (Duration: 1916.7ms | Allocations: 2672)
+Completed 200 OK in 7872ms (Views: 2843.5ms | ActiveRecord: 87.7ms | Allocations: 7482)
+
+
+Started GET "/" for ::1 at 2022-09-28 16:59:49 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:7
+  Rendered users/index.html.erb within layouts/application (Duration: 13.7ms | Allocations: 1051)
+  Rendered layout layouts/application.html.erb (Duration: 111.6ms | Allocations: 2648)
+Completed 200 OK in 506ms (Views: 234.2ms | ActiveRecord: 1.9ms | Allocations: 4668)
+
+
+Started GET "/" for ::1 at 2022-09-28 17:04:41 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:7
+  Rendered users/index.html.erb within layouts/application (Duration: 121.8ms | Allocations: 1054)
+  Rendered layouts/_navbar.html.erb (Duration: 1953.0ms | Allocations: 5441)
+  Rendered layout layouts/application.html.erb (Duration: 2965.2ms | Allocations: 9583)
+Completed 500 Internal Server Error in 9721ms (ActiveRecord: 2.5ms | Allocations: 11497)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `recipes_path' for #<ActionView::Base:0x0000000000d3e0>):
+     8:       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+     9:         <% if user_signed_in? %>
+    10:           <li class="btn-group">
+    11:             <%= link_to 'My recipes', recipes_path,  class: 'btn btn-outline-primary' %>
+    12:             <%= link_to 'My foods', foods_path,  class: 'btn btn-outline-primary' %>
+    13:             <%= link_to 'Create new recipe', new_recipe_path,  class: 'btn btn-outline-primary' %>
+    14:             <%= link_to 'Inventories', inventories_path,  class: 'btn btn-outline-primary' %>
+  
+app/views/layouts/_navbar.html.erb:11
+app/views/layouts/application.html.erb:14
+Started GET "/" for ::1 at 2022-09-28 17:05:21 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (3.0ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:7
+  Rendered users/index.html.erb within layouts/application (Duration: 13.2ms | Allocations: 683)
+  Rendered layouts/_navbar.html.erb (Duration: 65.9ms | Allocations: 4996)
+  Rendered layout layouts/application.html.erb (Duration: 160.7ms | Allocations: 8168)
+Completed 500 Internal Server Error in 267ms (ActiveRecord: 4.1ms | Allocations: 9551)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `recipes_path' for #<ActionView::Base:0x0000000000d700>):
+     8:       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+     9:         <% if user_signed_in? %>
+    10:           <li class="btn-group">
+    11:             <%= link_to 'My recipes', recipes_path,  class: 'btn btn-outline-primary' %>
+    12:             <%= link_to 'My foods', foods_path,  class: 'btn btn-outline-primary' %>
+    13:             <%= link_to 'Create new recipe', new_recipe_path,  class: 'btn btn-outline-primary' %>
+    14:             <%= link_to 'Inventories', inventories_path,  class: 'btn btn-outline-primary' %>
+  
+app/views/layouts/_navbar.html.erb:11
+app/views/layouts/application.html.erb:14
+Started GET "/" for ::1 at 2022-09-28 17:07:20 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (4.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (3.9ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:7
+  Rendered users/index.html.erb within layouts/application (Duration: 497.6ms | Allocations: 1057)
+  Rendered layouts/_navbar.html.erb (Duration: 115.4ms | Allocations: 634)
+  Rendered layout layouts/application.html.erb (Duration: 1163.1ms | Allocations: 4744)
+Completed 200 OK in 1786ms (Views: 1412.3ms | ActiveRecord: 7.9ms | Allocations: 6540)
+
+
+Started DELETE "/users/sign_out" for ::1 at 2022-09-28 17:07:32 -0500
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 4986ms (ActiveRecord: 1.5ms | Allocations: 10224)
+
+
+Started GET "/" for ::1 at 2022-09-28 17:07:39 -0500
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (6.8ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:7
+  Rendered users/index.html.erb within layouts/application (Duration: 115.3ms | Allocations: 789)
+  Rendered layouts/_navbar.html.erb (Duration: 1.1ms | Allocations: 148)
+  Rendered layout layouts/application.html.erb (Duration: 505.8ms | Allocations: 3562)
+Completed 200 OK in 593ms (Views: 553.8ms | ActiveRecord: 6.8ms | Allocations: 4171)
+
+
+Started GET "/users/sign_up" for ::1 at 2022-09-28 17:07:57 -0500
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 1.9ms | Allocations: 191)
+  Rendered devise/shared/_links.html.erb (Duration: 44.2ms | Allocations: 523)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 369.9ms | Allocations: 3081)
+  Rendered layouts/_navbar.html.erb (Duration: 1.0ms | Allocations: 198)
+  Rendered layout layouts/application.html.erb (Duration: 546.9ms | Allocations: 5965)
+Completed 200 OK in 784ms (Views: 642.2ms | ActiveRecord: 0.0ms | Allocations: 6976)
+
+
+Started GET "/users/sign_up" for ::1 at 2022-09-28 17:09:27 -0500
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 15.5ms | Allocations: 191)
+  Rendered devise/shared/_links.html.erb (Duration: 11.8ms | Allocations: 523)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 142.7ms | Allocations: 3045)
+  Rendered layouts/_navbar.html.erb (Duration: 2.9ms | Allocations: 520)
+  Rendered layout layouts/application.html.erb (Duration: 285.3ms | Allocations: 6580)
+Completed 200 OK in 576ms (Views: 563.0ms | ActiveRecord: 0.0ms | Allocations: 7818)
+
+
+Started GET "/users/sign_up" for ::1 at 2022-09-28 17:10:50 -0500
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 12.0ms | Allocations: 191)
+  Rendered devise/shared/_links.html.erb (Duration: 7.2ms | Allocations: 523)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 932.4ms | Allocations: 3050)
+  Rendered layouts/_navbar.html.erb (Duration: 27.4ms | Allocations: 520)
+  Rendered layout layouts/application.html.erb (Duration: 3499.9ms | Allocations: 6595)
+Completed 200 OK in 4409ms (Views: 4325.3ms | ActiveRecord: 0.0ms | Allocations: 7843)
+
+
+Started POST "/users" for ::1 at 2022-09-28 17:11:30 -0500
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"name"=>"friday", "email"=>"richard@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+[31mUnpermitted parameter: :name. Context: { controller: Devise::RegistrationsController, action: create, request: #<ActionDispatch::Request:0x0000026c8ba8a6e8>, params: {"authenticity_token"=>"[FILTERED]", "user"=>{"name"=>"friday", "email"=>"richard@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up", "controller"=>"devise/registrations", "action"=>"create"} }[0m
+  [1m[36mTRANSACTION (50.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (33.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "richard@gmail.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (167.6ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "confirmation_token", "confirmed_at", "confirmation_sent_at", "unconfirmed_email") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["name", nil], ["created_at", "2022-09-28 22:11:32.013091"], ["updated_at", "2022-09-28 22:11:32.013091"], ["email", "richard@gmail.com"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["confirmation_token", "[FILTERED]"], ["confirmed_at", nil], ["confirmation_sent_at", "2022-09-28 22:11:32.013285"], ["unconfirmed_email", nil]]
+  [1m[36mTRANSACTION (3.2ms)[0m  [1m[35mCOMMIT[0m
+  Rendering devise/mailer/confirmation_instructions.html.erb
+  Rendered devise/mailer/confirmation_instructions.html.erb (Duration: 22.6ms | Allocations: 280)
+Devise::Mailer#confirmation_instructions: processed outbound mail in 235.6ms
+Delivered mail 6334c694ae487_10585ff027856@LAPTOP-H72U8CMC.mail (10511.8ms)
+Date: Wed, 28 Sep 2022 17:11:32 -0500
+From: please-change-me-at-config-initializers-devise@example.com
+Reply-To: please-change-me-at-config-initializers-devise@example.com
+To: richard@gmail.com
+Message-ID: <6334c694ae487_10585ff027856@LAPTOP-H72U8CMC.mail>
+Subject: Confirmation instructions
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<p>Welcome richard@gmail.com!</p>
+
+<p>You can confirm your account email through the link below:</p>
+
+<p><a href="http://localhost:3000/users/confirmation?confirmation_token=7XysAi6vC-GS6p2gPsJP">Confirm my account</a></p>
+
+Redirected to http://localhost:3000/
+Completed 302 Found in 12552ms (ActiveRecord: 254.8ms | Allocations: 12077)
+
+
+Started GET "/" for ::1 at 2022-09-28 17:11:43 -0500
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (12.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:7
+  Rendered users/index.html.erb within layouts/application (Duration: 95.1ms | Allocations: 1125)
+  Rendered layouts/_navbar.html.erb (Duration: 3.8ms | Allocations: 153)
+  Rendered layout layouts/application.html.erb (Duration: 247.8ms | Allocations: 3994)
+Completed 200 OK in 352ms (Views: 275.4ms | ActiveRecord: 12.3ms | Allocations: 4948)
+
+
+Started GET "/" for ::1 at 2022-09-28 17:13:36 -0500
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (3.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:7
+  Rendered users/index.html.erb within layouts/application (Duration: 405.6ms | Allocations: 7493)
+  Rendered layout layouts/application.html.erb (Duration: 412.8ms | Allocations: 7576)
+Completed 500 Internal Server Error in 561ms (ActiveRecord: 3.3ms | Allocations: 8670)
+
+
+  
+ActionView::Template::Error (undefined method `first_name' for #<User id: 1, name: nil, created_at: "2022-09-28 21:42:14.815657000 +0000", updated_at: "2022-09-28 21:44:13.047727000 +0000", email: "richemonday@gmail.com">):
+     5: <h3>This is the list of our users:</h3>
+     6: <ul class='card'>
+     7: <% @users.each do |user|%>
+     8:   <li  >Email: <%= user.first_name %></li>
+     9:   <li  >Email: <%= user.second_name %></li>
+    10: <%end%>
+    11: </ul>
+  
+app/views/users/index.html.erb:8
+app/views/users/index.html.erb:7
+Started GET "/users/sign_in" for ::1 at 2022-09-28 17:14:02 -0500
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 5.1ms | Allocations: 578)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 142.9ms | Allocations: 2237)
+  Rendered layouts/_navbar.html.erb (Duration: 2.5ms | Allocations: 522)
+  Rendered layout layouts/application.html.erb (Duration: 412.2ms | Allocations: 5775)
+Completed 200 OK in 607ms (Views: 544.2ms | ActiveRecord: 0.0ms | Allocations: 6908)
+
+
+Started POST "/users/sign_in" for ::1 at 2022-09-28 17:14:32 -0500
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"richemonday@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (32.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "richemonday@gmail.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 814ms (ActiveRecord: 32.6ms | Allocations: 1769)
+
+
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"richemonday@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 9.8ms | Allocations: 185)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 140.3ms | Allocations: 1280)
+  Rendered layouts/_navbar.html.erb (Duration: 0.5ms | Allocations: 131)
+  Rendered layout layouts/application.html.erb (Duration: 504.5ms | Allocations: 3892)
+Completed 200 OK in 1327ms (Views: 531.9ms | ActiveRecord: 0.0ms | Allocations: 4454)
+
+
+Started POST "/users/sign_in" for ::1 at 2022-09-28 17:14:45 -0500
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"richemonday@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (15.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "richemonday@gmail.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 4000ms (ActiveRecord: 15.6ms | Allocations: 1655)
+
+
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"richemonday@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 6.1ms | Allocations: 185)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 88.3ms | Allocations: 1272)
+  Rendered layouts/_navbar.html.erb (Duration: 3.6ms | Allocations: 131)
+  Rendered layout layouts/application.html.erb (Duration: 483.8ms | Allocations: 3883)
+Completed 200 OK in 2668ms (Views: 966.0ms | ActiveRecord: 0.0ms | Allocations: 4401)
+
+
+Started POST "/users/sign_in" for ::1 at 2022-09-28 17:15:19 -0500
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"richemonday@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "richemonday@gmail.com"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 1009ms (ActiveRecord: 1.4ms | Allocations: 2607)
+
+
+Started GET "/" for ::1 at 2022-09-28 17:15:21 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  Rendered users/index.html.erb within layouts/application (Duration: 139.1ms | Allocations: 6356)
+  Rendered layout layouts/application.html.erb (Duration: 173.0ms | Allocations: 6433)
+Completed 500 Internal Server Error in 288ms (ActiveRecord: 0.5ms | Allocations: 7657)
+
+
+  
+ActionView::Template::Error (undefined method `first_Richard' for #<User id: 1, name: nil, created_at: "2022-09-28 21:42:14.815657000 +0000", updated_at: "2022-09-28 21:44:13.047727000 +0000", email: "richemonday@gmail.com">):
+    1: <% if user_signed_in? %>
+    2:   <p class='alert alert-info'>Welcome <%= current_user.first_Richard%></p>
+    3: 
+    4: <%end%>
+    5: <h3>This is the list of our users:</h3>
+  
+app/views/users/index.html.erb:2
+Started GET "/" for ::1 at 2022-09-28 17:15:56 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  Rendered users/index.html.erb within layouts/application (Duration: 149.2ms | Allocations: 6574)
+  Rendered layout layouts/application.html.erb (Duration: 220.5ms | Allocations: 6660)
+Completed 500 Internal Server Error in 661ms (ActiveRecord: 1.9ms | Allocations: 8405)
+
+
+  
+ActionView::Template::Error (undefined method `first_name' for #<User id: 1, name: nil, created_at: "2022-09-28 21:42:14.815657000 +0000", updated_at: "2022-09-28 21:44:13.047727000 +0000", email: "richemonday@gmail.com">):
+    1: <% if user_signed_in? %>
+    2:   <p class='alert alert-info'>Welcome <%= current_user.first_name%></p>
+    3: 
+    4: <%end%>
+    5: <h3>This is the list of our users:</h3>
+  
+app/views/users/index.html.erb:2
+Started POST "/users/sign_in" for ::1 at 2022-09-28 17:16:48 -0500
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"richardfriday003@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (4.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 79ms (ActiveRecord: 4.8ms | Allocations: 1803)
+
+
+Started GET "/" for ::1 at 2022-09-28 17:16:50 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  Rendered users/index.html.erb within layouts/application (Duration: 88.1ms | Allocations: 6284)
+  Rendered layout layouts/application.html.erb (Duration: 125.6ms | Allocations: 6361)
+Completed 500 Internal Server Error in 293ms (ActiveRecord: 1.1ms | Allocations: 7627)
+
+
+  
+ActionView::Template::Error (undefined method `first_name' for #<User id: 1, name: nil, created_at: "2022-09-28 21:42:14.815657000 +0000", updated_at: "2022-09-28 21:44:13.047727000 +0000", email: "richemonday@gmail.com">):
+    1: <% if user_signed_in? %>
+    2:   <p class='alert alert-info'>Welcome <%= current_user.first_name%></p>
+    3: 
+    4: <%end%>
+    5: <h3>This is the list of our users:</h3>
+  
+app/views/users/index.html.erb:2
+Started POST "/users/sign_in" for ::1 at 2022-09-28 17:17:00 -0500
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"richardfriday003@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (8.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 595ms (ActiveRecord: 68.0ms | Allocations: 13542)
+
+
+Started GET "/" for ::1 at 2022-09-28 17:17:03 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  Rendered users/index.html.erb within layouts/application (Duration: 38.4ms | Allocations: 6284)
+  Rendered layout layouts/application.html.erb (Duration: 44.8ms | Allocations: 6361)
+Completed 500 Internal Server Error in 90ms (ActiveRecord: 0.9ms | Allocations: 7589)
+
+
+  
+ActionView::Template::Error (undefined method `first_name' for #<User id: 1, name: nil, created_at: "2022-09-28 21:42:14.815657000 +0000", updated_at: "2022-09-28 21:44:13.047727000 +0000", email: "richemonday@gmail.com">):
+    1: <% if user_signed_in? %>
+    2:   <p class='alert alert-info'>Welcome <%= current_user.first_name%></p>
+    3: 
+    4: <%end%>
+    5: <h3>This is the list of our users:</h3>
+  
+app/views/users/index.html.erb:2
+Started GET "/users/sign_up" for ::1 at 2022-09-28 17:17:33 -0500
+Processing by Devise::RegistrationsController#new as HTML
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 258ms (ActiveRecord: 1.0ms | Allocations: 1582)
+
+
+Started GET "/" for ::1 at 2022-09-28 17:17:36 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  Rendered users/index.html.erb within layouts/application (Duration: 66.8ms | Allocations: 6284)
+  Rendered layout layouts/application.html.erb (Duration: 159.1ms | Allocations: 6361)
+Completed 500 Internal Server Error in 340ms (ActiveRecord: 1.5ms | Allocations: 7571)
+
+
+  
+ActionView::Template::Error (undefined method `first_name' for #<User id: 1, name: nil, created_at: "2022-09-28 21:42:14.815657000 +0000", updated_at: "2022-09-28 21:44:13.047727000 +0000", email: "richemonday@gmail.com">):
+    1: <% if user_signed_in? %>
+    2:   <p class='alert alert-info'>Welcome <%= current_user.first_name%></p>
+    3: 
+    4: <%end%>
+    5: <h3>This is the list of our users:</h3>
+  
+app/views/users/index.html.erb:2
+Started GET "/" for ::1 at 2022-09-28 17:18:11 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:7
+  Rendered users/index.html.erb within layouts/application (Duration: 604.4ms | Allocations: 7353)
+  Rendered layout layouts/application.html.erb (Duration: 1045.9ms | Allocations: 7437)
+Completed 500 Internal Server Error in 2303ms (ActiveRecord: 2.2ms | Allocations: 9289)
+
+
+  
+ActionView::Template::Error (undefined method `first_name' for #<User id: 1, name: nil, created_at: "2022-09-28 21:42:14.815657000 +0000", updated_at: "2022-09-28 21:44:13.047727000 +0000", email: "richemonday@gmail.com">):
+     5: <h3>This is the list of our users:</h3>
+     6: <ul class='card'>
+     7: <% @users.each do |user|%>
+     8:   <li  >Email: <%= user.first_name %></li>
+     9:   <li  >Email: <%= user.second_name %></li>
+    10: <%end%>
+    11: </ul>
+  
+app/views/users/index.html.erb:8
+app/views/users/index.html.erb:7
+Started GET "/" for ::1 at 2022-09-28 17:21:48 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (3.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:7
+  Rendered users/index.html.erb within layouts/application (Duration: 451.9ms | Allocations: 7354)
+  Rendered layout layouts/application.html.erb (Duration: 627.4ms | Allocations: 7437)
+Completed 500 Internal Server Error in 1150ms (ActiveRecord: 3.9ms | Allocations: 9314)
+
+
+  
+ActionView::Template::Error (undefined method `first_name' for #<User id: 1, name: nil, created_at: "2022-09-28 21:42:14.815657000 +0000", updated_at: "2022-09-28 21:44:13.047727000 +0000", email: "richemonday@gmail.com">):
+     5: <h3>This is the list of our users:</h3>
+     6: <ul class='card'>
+     7: <% @users.each do |user|%>
+     8:   <li  >name: <%= user.first_name %></li>
+     9:   <li  >name: <%= user.second_name %></li>
+    10: <%end%>
+    11: </ul>
+  
+app/views/users/index.html.erb:8
+app/views/users/index.html.erb:7
+Started GET "/" for ::1 at 2022-09-28 17:22:23 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:7
+  Rendered users/index.html.erb within layouts/application (Duration: 19.4ms | Allocations: 1097)
+  Rendered layouts/_navbar.html.erb (Duration: 35.2ms | Allocations: 619)
+  Rendered layout layouts/application.html.erb (Duration: 251.0ms | Allocations: 4782)
+Completed 200 OK in 543ms (Views: 431.6ms | ActiveRecord: 3.4ms | Allocations: 6687)
+
+
+Started GET "/" for ::1 at 2022-09-28 17:24:30 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:7
+  Rendered users/index.html.erb within layouts/application (Duration: 181.6ms | Allocations: 7353)
+  Rendered layout layouts/application.html.erb (Duration: 186.0ms | Allocations: 7436)
+Completed 500 Internal Server Error in 348ms (ActiveRecord: 2.6ms | Allocations: 9334)
+
+
+  
+ActionView::Template::Error (undefined method `first_name' for #<User id: 1, name: nil, created_at: "2022-09-28 21:42:14.815657000 +0000", updated_at: "2022-09-28 21:44:13.047727000 +0000", email: "richemonday@gmail.com">):
+     5: <h3>This is the list of our users:</h3>
+     6: <ul class='card'>
+     7: <% @users.each do |user|%>
+     8:   <li  ><%= user.first_name %></li>
+     9:   <li  >name: <%= user.name %></li>
+    10: <%end%>
+    11: </ul>
+  
+app/views/users/index.html.erb:8
+app/views/users/index.html.erb:7
+Started GET "/" for ::1 at 2022-09-28 17:27:17 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:7
+  Rendered users/index.html.erb within layouts/application (Duration: 50.9ms | Allocations: 1097)
+  Rendered layouts/_navbar.html.erb (Duration: 2.5ms | Allocations: 619)
+  Rendered layout layouts/application.html.erb (Duration: 454.6ms | Allocations: 4769)
+Completed 200 OK in 947ms (Views: 743.6ms | ActiveRecord: 1.8ms | Allocations: 6686)
+
+
+Started POST "/users/sign_in" for ::1 at 2022-09-29 04:55:57 -0500
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"richardfriday003@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (1767.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 33445ms (ActiveRecord: 12619.2ms | Allocations: 4870)
+
+
+Started GET "/" for ::1 at 2022-09-29 04:56:34 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:7
+  Rendered users/index.html.erb within layouts/application (Duration: 119.8ms | Allocations: 1097)
+  Rendered layouts/_navbar.html.erb (Duration: 1378.0ms | Allocations: 623)
+  Rendered layout layouts/application.html.erb (Duration: 5838.8ms | Allocations: 4780)
+Completed 200 OK in 8155ms (Views: 6705.6ms | ActiveRecord: 2.1ms | Allocations: 6592)
+
+
+Started GET "/" for ::1 at 2022-09-29 04:57:02 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:7
+  Rendered users/index.html.erb within layouts/application (Duration: 333.1ms | Allocations: 720)
+  Rendered layouts/_navbar.html.erb (Duration: 0.8ms | Allocations: 271)
+  Rendered layout layouts/application.html.erb (Duration: 753.2ms | Allocations: 3485)
+Completed 200 OK in 2157ms (Views: 765.0ms | ActiveRecord: 2.3ms | Allocations: 4880)
+
+
+Started DELETE "/users/sign_out" for ::1 at 2022-09-29 04:57:12 -0500
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 11275ms (ActiveRecord: 0.9ms | Allocations: 2107)
+
+
+Started GET "/" for ::1 at 2022-09-29 04:57:24 -0500
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:7
+  Rendered users/index.html.erb within layouts/application (Duration: 650.2ms | Allocations: 743)
+  Rendered layouts/_navbar.html.erb (Duration: 0.6ms | Allocations: 147)
+  Rendered layout layouts/application.html.erb (Duration: 1295.3ms | Allocations: 3408)
+Completed 200 OK in 2752ms (Views: 1310.5ms | ActiveRecord: 1.0ms | Allocations: 3936)
+
+
+Started GET "/users/sign_up" for ::1 at 2022-09-29 04:57:49 -0500
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 1141.4ms | Allocations: 195)
+  Rendered devise/shared/_links.html.erb (Duration: 755.9ms | Allocations: 524)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 13292.6ms | Allocations: 2778)
+  Rendered layouts/_navbar.html.erb (Duration: 3.8ms | Allocations: 196)
+  Rendered layout layouts/application.html.erb (Duration: 13355.6ms | Allocations: 5659)
+Completed 200 OK in 14345ms (Views: 13461.6ms | ActiveRecord: 0.0ms | Allocations: 6785)
+
+
+Started GET "/users/sign_up" for ::1 at 2022-09-29 04:59:53 -0500
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 802.4ms | Allocations: 191)
+  Rendered devise/shared/_links.html.erb (Duration: 689.5ms | Allocations: 526)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 4577.0ms | Allocations: 2789)
+  Rendered layouts/_navbar.html.erb (Duration: 452.2ms | Allocations: 520)
+  Rendered layout layouts/application.html.erb (Duration: 10119.0ms | Allocations: 6334)
+Completed 200 OK in 11946ms (Views: 11438.5ms | ActiveRecord: 0.0ms | Allocations: 7596)
+
+
+Started POST "/users" for ::1 at 2022-09-29 05:02:05 -0500
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"name"=>"Richard Friday", "email"=>"kini@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+[31mUnpermitted parameter: :name. Context: { controller: Devise::RegistrationsController, action: create, request: #<ActionDispatch::Request:0x0000026c86c78e50>, params: {"authenticity_token"=>"[FILTERED]", "user"=>{"name"=>"Richard Friday", "email"=>"kini@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up", "controller"=>"devise/registrations", "action"=>"create"} }[0m
+  [1m[36mTRANSACTION (15.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (512.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "kini@gmail.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (553.9ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "confirmation_token", "confirmed_at", "confirmation_sent_at", "unconfirmed_email") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["name", nil], ["created_at", "2022-09-29 10:02:12.212276"], ["updated_at", "2022-09-29 10:02:12.212276"], ["email", "kini@gmail.com"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["confirmation_token", "[FILTERED]"], ["confirmed_at", nil], ["confirmation_sent_at", "2022-09-29 10:02:12.220779"], ["unconfirmed_email", nil]]
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mCOMMIT[0m
+  Rendering devise/mailer/confirmation_instructions.html.erb
+  Rendered devise/mailer/confirmation_instructions.html.erb (Duration: 254.1ms | Allocations: 285)
+Devise::Mailer#confirmation_instructions: processed outbound mail in 2438.9ms
+Started POST "/users" for ::1 at 2022-09-29 05:02:41 -0500
+Started POST "/users" for ::1 at 2022-09-29 05:02:42 -0500
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"name"=>"Richard Friday", "email"=>"kini@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+[31mUnpermitted parameter: :name. Context: { controller: Devise::RegistrationsController, action: create, request: #<ActionDispatch::Request:0x0000026c8adbadf0>, params: {"authenticity_token"=>"[FILTERED]", "user"=>{"name"=>"Richard Friday", "email"=>"kini@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up", "controller"=>"devise/registrations", "action"=>"create"} }[0m
+Delivered mail 63356d2b290da_105837dc27940@LAPTOP-H72U8CMC.mail (29588.9ms)
+Date: Thu, 29 Sep 2022 05:02:18 -0500
+From: please-change-me-at-config-initializers-devise@example.com
+Reply-To: please-change-me-at-config-initializers-devise@example.com
+To: kini@gmail.com
+Message-ID: <63356d2b290da_105837dc27940@LAPTOP-H72U8CMC.mail>
+Subject: Confirmation instructions
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<p>Welcome kini@gmail.com!</p>
+
+<p>You can confirm your account email through the link below:</p>
+
+<p><a href="http://localhost:3000/users/confirmation?confirmation_token=sapx86ovWMCD8ihm2MPo">Confirm my account</a></p>
+
+Redirected to http://localhost:3000/
+Completed 302 Found in 45048ms (ActiveRecord: 1083.9ms | Allocations: 16941)
+
+
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"name"=>"Richard Friday", "email"=>"kini@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+[31mUnpermitted parameter: :name. Context: { controller: Devise::RegistrationsController, action: create, request: #<ActionDispatch::Request:0x0000026c8b6d0c00>, params: {"authenticity_token"=>"[FILTERED]", "user"=>{"name"=>"Richard Friday", "email"=>"kini@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up", "controller"=>"devise/registrations", "action"=>"create"} }[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (3235.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (6.8ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "kini@gmail.com"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (1984.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "kini@gmail.com"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (2035.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (746.1ms)[0m  [1m[31mROLLBACK[0m
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 3178.4ms | Allocations: 794)
+  Rendered devise/shared/_error_messages.html.erb (Duration: 2.3ms | Allocations: 460)
+  Rendered devise/shared/_links.html.erb (Duration: 61.8ms | Allocations: 541)
+  Rendered devise/shared/_links.html.erb (Duration: 136.4ms | Allocations: 702)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 6286.6ms | Allocations: 6391)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 6212.6ms | Allocations: 6248)
+  Rendered layouts/_navbar.html.erb (Duration: 17.2ms | Allocations: 528)
+  Rendered layout layouts/application.html.erb (Duration: 8236.6ms | Allocations: 12275)
+  Rendered layouts/_navbar.html.erb (Duration: 76.4ms | Allocations: 758)
+  Rendered layout layouts/application.html.erb (Duration: 8471.7ms | Allocations: 12624)
+Completed 200 OK in 27692ms (Views: 8308.5ms | ActiveRecord: 3796.5ms | Allocations: 29350)
+
+
+Completed 200 OK in 18748ms (Views: 8735.9ms | ActiveRecord: 5277.1ms | Allocations: 24314)
+
+
+Started POST "/users" for ::1 at 2022-09-29 05:04:53 -0500
+Started POST "/users" for ::1 at 2022-09-29 05:04:54 -0500
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"name"=>"Richard Friday", "email"=>"kini111@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+[31mUnpermitted parameter: :name. Context: { controller: Devise::RegistrationsController, action: create, request: #<ActionDispatch::Request:0x0000026c8a774c48>, params: {"authenticity_token"=>"[FILTERED]", "user"=>{"name"=>"Richard Friday", "email"=>"kini111@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up", "controller"=>"devise/registrations", "action"=>"create"} }[0m
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"name"=>"Richard Friday", "email"=>"kini111@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+[31mUnpermitted parameter: :name. Context: { controller: Devise::RegistrationsController, action: create, request: #<ActionDispatch::Request:0x0000026c8b5aadd0>, params: {"authenticity_token"=>"[FILTERED]", "user"=>{"name"=>"Richard Friday", "email"=>"kini111@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up", "controller"=>"devise/registrations", "action"=>"create"} }[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "kini111@gmail.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (3.8ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "confirmation_token", "confirmed_at", "confirmation_sent_at", "unconfirmed_email") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["name", nil], ["created_at", "2022-09-29 10:04:57.611458"], ["updated_at", "2022-09-29 10:04:57.611458"], ["email", "kini111@gmail.com"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["confirmation_token", "[FILTERED]"], ["confirmed_at", nil], ["confirmation_sent_at", "2022-09-29 10:04:57.611613"], ["unconfirmed_email", nil]]
+  [1m[36mTRANSACTION (14.3ms)[0m  [1m[35mCOMMIT[0m
+  Rendering devise/mailer/confirmation_instructions.html.erb
+  Rendered devise/mailer/confirmation_instructions.html.erb (Duration: 0.6ms | Allocations: 86)
+Devise::Mailer#confirmation_instructions: processed outbound mail in 58.7ms
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (26.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "kini111@gmail.com"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[31mROLLBACK[0m
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 26.6ms | Allocations: 460)
+  Rendered devise/shared/_links.html.erb (Duration: 13.4ms | Allocations: 132)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 569.9ms | Allocations: 2506)
+  Rendered layouts/_navbar.html.erb (Duration: 0.6ms | Allocations: 162)
+  Rendered layout layouts/application.html.erb (Duration: 2865.7ms | Allocations: 5161)
+Completed 200 OK in 6000ms (Views: 2871.3ms | ActiveRecord: 27.6ms | Allocations: 18113)
+
+
+Delivered mail 63356dc9b9067_105837dc280aa@LAPTOP-H72U8CMC.mail (10361.4ms)
+Date: Thu, 29 Sep 2022 05:04:57 -0500
+From: please-change-me-at-config-initializers-devise@example.com
+Reply-To: please-change-me-at-config-initializers-devise@example.com
+To: kini111@gmail.com
+Message-ID: <63356dc9b9067_105837dc280aa@LAPTOP-H72U8CMC.mail>
+Subject: Confirmation instructions
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<p>Welcome kini111@gmail.com!</p>
+
+<p>You can confirm your account email through the link below:</p>
+
+<p><a href="http://localhost:3000/users/confirmation?confirmation_token=5q584Ezb-DLJ-PexeiuK">Confirm my account</a></p>
+
+Redirected to http://localhost:3000/
+Completed 302 Found in 12573ms (ActiveRecord: 20.9ms | Allocations: 21909)
+
+
+Started POST "/users" for ::1 at 2022-09-29 05:05:22 -0500
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"name"=>"viky akpan", "email"=>"kini111@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+[31mUnpermitted parameter: :name. Context: { controller: Devise::RegistrationsController, action: create, request: #<ActionDispatch::Request:0x0000026c88299478>, params: {"authenticity_token"=>"[FILTERED]", "user"=>{"name"=>"viky akpan", "email"=>"kini111@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up", "controller"=>"devise/registrations", "action"=>"create"} }[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "kini111@gmail.com"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[31mROLLBACK[0m
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 1.2ms | Allocations: 460)
+  Rendered devise/shared/_links.html.erb (Duration: 0.6ms | Allocations: 132)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 19.4ms | Allocations: 2506)
+  Rendered layouts/_navbar.html.erb (Duration: 0.5ms | Allocations: 162)
+  Rendered layout layouts/application.html.erb (Duration: 154.4ms | Allocations: 5166)
+Completed 200 OK in 966ms (Views: 163.7ms | ActiveRecord: 1.8ms | Allocations: 10100)
+
+
+Started POST "/users" for ::1 at 2022-09-29 05:05:53 -0500
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"name"=>"viky akpan", "email"=>"vicky@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+[31mUnpermitted parameter: :name. Context: { controller: Devise::RegistrationsController, action: create, request: #<ActionDispatch::Request:0x0000026c89c5ee80>, params: {"authenticity_token"=>"[FILTERED]", "user"=>{"name"=>"viky akpan", "email"=>"vicky@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up", "controller"=>"devise/registrations", "action"=>"create"} }[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "vicky@gmail.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (9.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "confirmation_token", "confirmed_at", "confirmation_sent_at", "unconfirmed_email") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["name", nil], ["created_at", "2022-09-29 10:05:55.197107"], ["updated_at", "2022-09-29 10:05:55.197107"], ["email", "vicky@gmail.com"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["confirmation_token", "[FILTERED]"], ["confirmed_at", nil], ["confirmation_sent_at", "2022-09-29 10:05:55.197231"], ["unconfirmed_email", nil]]
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  Rendering devise/mailer/confirmation_instructions.html.erb
+  Rendered devise/mailer/confirmation_instructions.html.erb (Duration: 0.6ms | Allocations: 79)
+Devise::Mailer#confirmation_instructions: processed outbound mail in 120.3ms
+Delivered mail 63356e03926de_105837dc281db@LAPTOP-H72U8CMC.mail (10467.6ms)
+Date: Thu, 29 Sep 2022 05:05:55 -0500
+From: please-change-me-at-config-initializers-devise@example.com
+Reply-To: please-change-me-at-config-initializers-devise@example.com
+To: vicky@gmail.com
+Message-ID: <63356e03926de_105837dc281db@LAPTOP-H72U8CMC.mail>
+Subject: Confirmation instructions
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<p>Welcome vicky@gmail.com!</p>
+
+<p>You can confirm your account email through the link below:</p>
+
+<p><a href="http://localhost:3000/users/confirmation?confirmation_token=mwew9afAmEnuJ5uy_vft">Confirm my account</a></p>
+
+Redirected to http://localhost:3000/
+Completed 302 Found in 12910ms (ActiveRecord: 12.9ms | Allocations: 10483)
+
+
+Started GET "/" for ::1 at 2022-09-29 05:06:09 -0500
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:7
+  Rendered users/index.html.erb within layouts/application (Duration: 628.6ms | Allocations: 1297)
+  Rendered layouts/_navbar.html.erb (Duration: 0.6ms | Allocations: 153)
+  Rendered layout layouts/application.html.erb (Duration: 838.0ms | Allocations: 4167)
+Completed 200 OK in 1084ms (Views: 1044.4ms | ActiveRecord: 0.9ms | Allocations: 5041)
+
+
+Started GET "/" for ::1 at 2022-09-29 05:07:20 -0500
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:7
+  Rendered users/index.html.erb within layouts/application (Duration: 37.5ms | Allocations: 1252)
+  Rendered layouts/_navbar.html.erb (Duration: 105.9ms | Allocations: 477)
+  Rendered layout layouts/application.html.erb (Duration: 1016.8ms | Allocations: 4776)
+Completed 200 OK in 1227ms (Views: 1203.4ms | ActiveRecord: 0.7ms | Allocations: 5915)
+
+
+Started GET "/users/sign_up" for ::1 at 2022-09-29 05:12:48 -0500
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 52.0ms | Allocations: 191)
+  Rendered devise/shared/_links.html.erb (Duration: 25.6ms | Allocations: 524)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 204.1ms | Allocations: 2749)
+  Rendered layouts/_navbar.html.erb (Duration: 88.9ms | Allocations: 353)
+  Rendered layout layouts/application.html.erb (Duration: 422.6ms | Allocations: 6120)
+Completed 200 OK in 530ms (Views: 484.9ms | Allocations: 7354)
+
+
+Started GET "/users/sign_up" for ::1 at 2022-09-29 05:12:56 -0500
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 14)
+  Rendered devise/shared/_links.html.erb (Duration: 0.6ms | Allocations: 132)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 29.4ms | Allocations: 1491)
+  Rendered layouts/_navbar.html.erb (Duration: 0.4ms | Allocations: 98)
+  Rendered layout layouts/application.html.erb (Duration: 171.0ms | Allocations: 4089)
+Completed 200 OK in 207ms (Views: 199.2ms | Allocations: 4701)
+
+
+Started GET "/users/sign_in" for ::1 at 2022-09-29 05:13:02 -0500
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 25.6ms | Allocations: 198)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 185.1ms | Allocations: 1797)
+  Rendered layouts/_navbar.html.erb (Duration: 0.5ms | Allocations: 126)
+  Rendered layout layouts/application.html.erb (Duration: 258.9ms | Allocations: 4606)
+Completed 200 OK in 389ms (Views: 325.6ms | Allocations: 5590)
+
+
+Started POST "/users/sign_in" for ::1 at 2022-09-29 05:13:07 -0500
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"vicky@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (43.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "vicky@gmail.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 2417ms (ActiveRecord: 84.0ms | Allocations: 5121)
+
+
+Started GET "/users/sign_in" for ::1 at 2022-09-29 05:13:11 -0500
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 1.1ms | Allocations: 185)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 91.0ms | Allocations: 1276)
+  Rendered layouts/_navbar.html.erb (Duration: 2.1ms | Allocations: 98)
+  Rendered layout layouts/application.html.erb (Duration: 191.1ms | Allocations: 3867)
+Completed 200 OK in 237ms (Views: 196.9ms | ActiveRecord: 0.0ms | Allocations: 4530)
+
+
+Started GET "/users/confirmation?confirmation_token=[FILTERED]" for ::1 at 2022-09-29 05:13:57 -0500
+Processing by Devise::ConfirmationsController#show as HTML
+  Parameters: {"confirmation_token"=>"[FILTERED]"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."confirmation_token" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["confirmation_token", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Update (386.7ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = $1, "confirmed_at" = $2 WHERE "users"."id" = $3[0m  [["updated_at", "2022-09-29 10:13:57.843605"], ["confirmed_at", "2022-09-29 10:13:57.829417"], ["id", 5]]
+  [1m[36mTRANSACTION (180.0ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/users/sign_in
+Completed 302 Found in 864ms (ActiveRecord: 567.8ms | Allocations: 4829)
+
+
+Started GET "/users/sign_in" for ::1 at 2022-09-29 05:13:58 -0500
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.8ms | Allocations: 185)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 155.4ms | Allocations: 1276)
+  Rendered layouts/_navbar.html.erb (Duration: 0.5ms | Allocations: 98)
+  Rendered layout layouts/application.html.erb (Duration: 336.9ms | Allocations: 3877)
+Completed 200 OK in 360ms (Views: 346.4ms | ActiveRecord: 0.0ms | Allocations: 4514)
+
+
+Started POST "/users/sign_in" for ::1 at 2022-09-29 05:14:03 -0500
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"vicky@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (2.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "vicky@gmail.com"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 555ms (ActiveRecord: 2.2ms | Allocations: 2586)
+
+
+Started GET "/" for ::1 at 2022-09-29 05:14:04 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:7
+  Rendered users/index.html.erb within layouts/application (Duration: 41.3ms | Allocations: 1231)
+  Rendered layouts/_navbar.html.erb (Duration: 84.0ms | Allocations: 144)
+  Rendered layout layouts/application.html.erb (Duration: 234.8ms | Allocations: 4108)
+Completed 200 OK in 407ms (Views: 348.7ms | ActiveRecord: 2.1ms | Allocations: 5689)
+
+
+Started GET "/" for ::1 at 2022-09-29 05:15:43 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:7
+  Rendered users/index.html.erb within layouts/application (Duration: 21.1ms | Allocations: 1230)
+  Rendered layouts/_navbar.html.erb (Duration: 4.0ms | Allocations: 348)
+  Rendered layout layouts/application.html.erb (Duration: 252.3ms | Allocations: 4619)
+Completed 200 OK in 1005ms (Views: 629.4ms | ActiveRecord: 2.2ms | Allocations: 6563)
+
+
+Started GET "/" for ::1 at 2022-09-29 05:15:49 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:7
+  Rendered users/index.html.erb within layouts/application (Duration: 187.0ms | Allocations: 862)
+  Rendered layouts/_navbar.html.erb (Duration: 0.4ms | Allocations: 123)
+  Rendered layout layouts/application.html.erb (Duration: 404.6ms | Allocations: 3480)
+Completed 200 OK in 606ms (Views: 525.0ms | ActiveRecord: 2.0ms | Allocations: 4875)
+
+
+Started GET "/users/sign_out" for ::1 at 2022-09-29 05:15:52 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/users/sign_out"):
+  
+Started GET "/" for 127.0.0.1 at 2022-09-29 05:24:22 -0500
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (167.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:7
+  Rendered users/index.html.erb within layouts/application (Duration: 5539.2ms | Allocations: 4316)
+  Rendered layouts/_navbar.html.erb (Duration: 203.3ms | Allocations: 484)
+  Rendered layout layouts/application.html.erb (Duration: 7419.1ms | Allocations: 7867)
+Completed 200 OK in 11602ms (Views: 7705.7ms | ActiveRecord: 1893.4ms | Allocations: 9043)
+
+
