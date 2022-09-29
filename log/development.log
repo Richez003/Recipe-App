@@ -3595,3 +3595,64 @@ Processing by RecipesController#new as HTML
 Completed 200 OK in 2728ms (Views: 2271.9ms | ActiveRecord: 1.0ms | Allocations: 11801)
 
 
+Started GET "/recipes/new" for 127.0.0.1 at 2022-09-29 10:23:38 -0500
+Processing by RecipesController#new as HTML
+  [1m[36mUser Load (31.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering recipes/new.html.erb within layouts/application
+  Rendered recipes/new.html.erb within layouts/application (Duration: 98.1ms | Allocations: 6946)
+  Rendered layouts/_navbar.html.erb (Duration: 67.0ms | Allocations: 799)
+  Rendered layout layouts/application.html.erb (Duration: 333.7ms | Allocations: 10507)
+Completed 200 OK in 4909ms (Views: 380.6ms | ActiveRecord: 1589.3ms | Allocations: 22966)
+
+
+Started GET "/sign_up" for 127.0.0.1 at 2022-09-29 10:24:30 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/sign_up"):
+  
+Started GET "/users/sign_up" for 127.0.0.1 at 2022-09-29 10:24:56 -0500
+Processing by Devise::RegistrationsController#new as HTML
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://127.0.0.1:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 563ms (ActiveRecord: 0.9ms | Allocations: 2063)
+
+
+Started GET "/" for 127.0.0.1 at 2022-09-29 10:25:03 -0500
+Processing by RecipesController#public as HTML
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering recipes/public.html.erb within layouts/application
+  [1m[36mRecipe Load (63.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."public" = $1[0m  [["public", true]]
+  ↳ app/views/shared/_recipelist.html.erb:2
+  Rendered shared/_recipelist.html.erb (Duration: 379.9ms | Allocations: 938)
+  Rendered recipes/public.html.erb within layouts/application (Duration: 399.2ms | Allocations: 1177)
+  Rendered layouts/_navbar.html.erb (Duration: 1.2ms | Allocations: 446)
+  Rendered layout layouts/application.html.erb (Duration: 505.9ms | Allocations: 3980)
+Completed 200 OK in 684ms (Views: 454.9ms | ActiveRecord: 64.2ms | Allocations: 5884)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2022-09-29 10:25:12 -0500
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://127.0.0.1:3000/
+Completed 302 Found in 2849ms (ActiveRecord: 1.0ms | Allocations: 2761)
+
+
+Started GET "/" for 127.0.0.1 at 2022-09-29 10:25:16 -0500
+Processing by RecipesController#public as HTML
+Completed 401 Unauthorized in 128ms (ActiveRecord: 0.0ms | Allocations: 287)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2022-09-29 10:25:19 -0500
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 32.8ms | Allocations: 601)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 450.5ms | Allocations: 2295)
+  Rendered layouts/_navbar.html.erb (Duration: 0.6ms | Allocations: 199)
+  Rendered layout layouts/application.html.erb (Duration: 594.5ms | Allocations: 4998)
+Completed 200 OK in 849ms (Views: 645.7ms | ActiveRecord: 0.0ms | Allocations: 6173)
+
+
