@@ -1326,3 +1326,80 @@ Processing by UsersController#index as HTML
 Completed 200 OK in 11602ms (Views: 7705.7ms | ActiveRecord: 1893.4ms | Allocations: 9043)
 
 
+Started GET "/" for 127.0.0.1 at 2022-09-29 06:14:55 -0500
+  [1m[36mActiveRecord::SchemaMigration Pluck (64.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as HTML
+Completed 401 Unauthorized in 1024ms (ActiveRecord: 0.0ms | Allocations: 2266)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2022-09-29 06:15:20 -0500
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 264.4ms | Allocations: 760)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 1919.4ms | Allocations: 4031)
+  Rendered layouts/_navbar.html.erb (Duration: 316.3ms | Allocations: 561)
+  Rendered layout layouts/application.html.erb (Duration: 24898.4ms | Allocations: 31837)
+Completed 200 OK in 26832ms (Views: 26094.5ms | ActiveRecord: 362.8ms | Allocations: 42578)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2022-09-29 06:16:08 -0500
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"richemonday@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (371.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "richemonday@gmail.com"], ["LIMIT", 1]]
+Redirected to http://127.0.0.1:3000/
+Completed 302 Found in 2394ms (ActiveRecord: 372.2ms | Allocations: 6079)
+
+
+Started GET "/" for 127.0.0.1 at 2022-09-29 06:16:11 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (15.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (4.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:7
+  Rendered users/index.html.erb within layouts/application (Duration: 15.6ms | Allocations: 1249)
+  Rendered layouts/_navbar.html.erb (Duration: 110.7ms | Allocations: 5236)
+  Rendered layout layouts/application.html.erb (Duration: 230.9ms | Allocations: 8907)
+Completed 500 Internal Server Error in 321ms (ActiveRecord: 19.4ms | Allocations: 11214)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `new_recipe_path' for #<ActionView::Base:0x0000000000c508>
+Did you mean?  new_session_path):
+    10:           <li class="btn-group">
+    11:             <%# <%= link_to 'My recipes', recipes_path,  class: 'btn btn-outline-primary' %> %>
+    12:             <%# <%= link_to 'My foods', foods_path,  class: 'btn btn-outline-primary' %> %>
+    13:             <%= link_to 'Create new recipe', new_recipe_path,  class: 'btn btn-outline-primary' %>
+    14:             <%= link_to 'Inventories', inventories_path,  class: 'btn btn-outline-primary' %>
+    15:             <%= button_to 'sign out', destroy_user_session_path, method: :delete, class: 'btn btn-outline-danger' %>
+    16:           </li>
+  
+app/views/layouts/_navbar.html.erb:13
+app/views/layouts/application.html.erb:14
+Started GET "/" for 127.0.0.1 at 2022-09-29 06:17:38 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:7
+  Rendered users/index.html.erb within layouts/application (Duration: 9.0ms | Allocations: 1230)
+  Rendered layouts/_navbar.html.erb (Duration: 2.8ms | Allocations: 628)
+  Rendered layout layouts/application.html.erb (Duration: 71.0ms | Allocations: 4643)
+Completed 200 OK in 135ms (Views: 101.2ms | ActiveRecord: 2.0ms | Allocations: 7052)
+
+
+Started GET "/" for 127.0.0.1 at 2022-09-29 06:18:19 -0500
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:7
+  Rendered users/index.html.erb within layouts/application (Duration: 18.9ms | Allocations: 862)
+  Rendered layouts/_navbar.html.erb (Duration: 1.8ms | Allocations: 271)
+  Rendered layout layouts/application.html.erb (Duration: 77.7ms | Allocations: 3345)
+Completed 200 OK in 100ms (Views: 79.0ms | ActiveRecord: 2.7ms | Allocations: 5182)
+
+
