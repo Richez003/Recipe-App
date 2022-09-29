@@ -1,12 +1,18 @@
-<% if @inventories.empty? %>
-  <h1>You have no inventories yet</h1>
-<% end %>
-<%= link_to 'Add a new inventory', new_inventory_path %>
-<% unless @inventories.empty? %>
-  <h2>Your inventories list:</h2>
-  <% @inventories.each do |inventory| %>
-    <%=link_to inventory.name, inventory_path(inventory.id)%>
-    <p><%=inventory.description%></p>
-    <%= button_to 'Delete', inventory_path(inventory.id), method: :delete %>
+<section class="inventory-section">
+  <% if @inventories.any? %>
+      <% @inventories.each do |inventory| %>
+        <div class="inventory-container">
+          <div>
+            <a href="<%= inventory_path(inventory) %>"><h2><%= inventory.name %></h2></a>
+            <%= button_to "REMOVE", inventory,class:"btn btn-danger mt-4", method: :delete %>
+          </div>
+          <div class="description">
+            <p><%= inventory.description%></p>
+          </div>
+        </div>
+      <% end %>
+  <% else %>
+    <h3 class="inventory-empty-data">No Inventories!</h3>
   <% end %>
-<% end %>
+  <%= link_to "Create new inventory", new_inventory_path, class:"btn btn-primary mt-2" %>
+</section>
