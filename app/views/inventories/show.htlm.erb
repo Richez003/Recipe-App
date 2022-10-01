@@ -3,7 +3,7 @@
     <h1 class="text-grayDark mt-8"><%= @inventory.name%></h1>
     <div class="container add-food-btn-container w-full flex justify-end mb-4 p-0">
       <% if @inventory.user == current_user %>
-        <%= link_to "Add Food", new_inventory_path(@inventory.id), class:"btn btn-primary" %>
+        <%= link_to "Add Food", new_inventory_inventory_food_path(@inventory.id), class:"btn btn-primary" %>
       <% end %>
     </div>
   </div>
