@@ -45,7 +45,7 @@ In your browser, go to
 
 ## Authors
 
-👤   **Ezeoke Stanley**
+👤   **Richard Friday**
 
 - GitHub: [@Richez003](https://github.com/Richez003)
 - LinkedIn: [Richard Friday](https://www.linkedin.com/in/richard-friday)
