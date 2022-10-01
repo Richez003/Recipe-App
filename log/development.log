@@ -5295,3 +5295,641 @@ Migrating to AddDescriptionToInventory (20220929120746)
   [1m[36mTRANSACTION (7.1ms)[0m  [1m[35mCOMMIT[0m
   [1m[35m (1.6ms)[0m  [1m[34mSELECT pg_advisory_unlock(7283300514316712970)[0m
   [1m[36mActiveRecord::SchemaMigration Pluck (5.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2022-10-01 07:47:09 -0500
+Started GET "/" for 127.0.0.1 at 2022-10-01 07:47:11 -0500
+  [1m[36mActiveRecord::SchemaMigration Pluck (5.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by RecipesController#public as HTML
+Processing by RecipesController#public as HTML
+  [1m[36mUser Load (1055.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 401 Unauthorized in 7427ms (ActiveRecord: 2613.4ms | Allocations: 17048)
+
+
+  [1m[36mUser Load (1070.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 401 Unauthorized in 11457ms (ActiveRecord: 2540.1ms | Allocations: 19358)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2022-10-01 07:50:30 -0500
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 717.9ms | Allocations: 765)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 3969.6ms | Allocations: 4430)
+  Rendered layouts/_navbar.html.erb (Duration: 1073.3ms | Allocations: 568)
+  Rendered layout layouts/application.html.erb (Duration: 37492.9ms | Allocations: 27412)
+Completed 200 OK in 42171ms (Views: 40743.6ms | ActiveRecord: 0.0ms | Allocations: 37056)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2022-10-01 07:53:47 -0500
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"name"=>"viky akpan", "email"=>"richemonday@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "richemonday@gmail.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 157ms (ActiveRecord: 0.8ms | Allocations: 2020)
+
+
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"name"=>"viky akpan", "email"=>"richemonday@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+[31mUnpermitted parameter: :name. Context: { controller: Devise::SessionsController, action: new, request: #<ActionDispatch::Request:0x000002a9e01de4a8>, params: {"authenticity_token"=>"[FILTERED]", "user"=>{"name"=>"viky akpan", "email"=>"richemonday@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in", "controller"=>"devise/sessions", "action"=>"create"} }[0m
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 1.4ms | Allocations: 187)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 14.4ms | Allocations: 1641)
+  Rendered layouts/_navbar.html.erb (Duration: 0.5ms | Allocations: 138)
+  Rendered layout layouts/application.html.erb (Duration: 44.5ms | Allocations: 4086)
+Completed 200 OK in 2084ms (Views: 48.4ms | ActiveRecord: 0.0ms | Allocations: 5556)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2022-10-01 07:53:55 -0500
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"name"=>"viky akpan", "email"=>"vicky@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "vicky@gmail.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 14ms (ActiveRecord: 0.8ms | Allocations: 1711)
+
+
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"name"=>"viky akpan", "email"=>"vicky@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+[31mUnpermitted parameter: :name. Context: { controller: Devise::SessionsController, action: new, request: #<ActionDispatch::Request:0x000002a9e0d573e8>, params: {"authenticity_token"=>"[FILTERED]", "user"=>{"name"=>"viky akpan", "email"=>"vicky@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in", "controller"=>"devise/sessions", "action"=>"create"} }[0m
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 3.1ms | Allocations: 185)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 16.7ms | Allocations: 1532)
+  Rendered layouts/_navbar.html.erb (Duration: 0.6ms | Allocations: 134)
+  Rendered layout layouts/application.html.erb (Duration: 71.2ms | Allocations: 4023)
+Completed 200 OK in 524ms (Views: 85.1ms | ActiveRecord: 0.0ms | Allocations: 4662)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2022-10-01 07:53:56 -0500
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"name"=>"viky akpan", "email"=>"vicky@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "vicky@gmail.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 62ms (ActiveRecord: 0.9ms | Allocations: 1494)
+
+
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"name"=>"viky akpan", "email"=>"vicky@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+[31mUnpermitted parameter: :name. Context: { controller: Devise::SessionsController, action: new, request: #<ActionDispatch::Request:0x000002a9e1013168>, params: {"authenticity_token"=>"[FILTERED]", "user"=>{"name"=>"viky akpan", "email"=>"vicky@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in", "controller"=>"devise/sessions", "action"=>"create"} }[0m
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 1.1ms | Allocations: 185)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 7.1ms | Allocations: 1506)
+  Rendered layouts/_navbar.html.erb (Duration: 0.4ms | Allocations: 134)
+  Rendered layout layouts/application.html.erb (Duration: 44.7ms | Allocations: 3836)
+Completed 200 OK in 564ms (Views: 53.7ms | ActiveRecord: 0.0ms | Allocations: 4446)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2022-10-01 07:54:08 -0500
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"name"=>"viky akpan", "email"=>"richemonday@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "richemonday@gmail.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 15ms (ActiveRecord: 0.9ms | Allocations: 1494)
+
+
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"name"=>"viky akpan", "email"=>"richemonday@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+[31mUnpermitted parameter: :name. Context: { controller: Devise::SessionsController, action: new, request: #<ActionDispatch::Request:0x000002a9e12db058>, params: {"authenticity_token"=>"[FILTERED]", "user"=>{"name"=>"viky akpan", "email"=>"richemonday@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in", "controller"=>"devise/sessions", "action"=>"create"} }[0m
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.9ms | Allocations: 185)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 13.3ms | Allocations: 1506)
+  Rendered layouts/_navbar.html.erb (Duration: 0.6ms | Allocations: 134)
+  Rendered layout layouts/application.html.erb (Duration: 65.7ms | Allocations: 3839)
+Completed 200 OK in 550ms (Views: 79.0ms | ActiveRecord: 0.0ms | Allocations: 4451)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2022-10-01 07:54:19 -0500
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"name"=>"Richard Friday", "email"=>"kini111@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (2.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "kini111@gmail.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 14ms (ActiveRecord: 2.9ms | Allocations: 1506)
+
+
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"name"=>"Richard Friday", "email"=>"kini111@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+[31mUnpermitted parameter: :name. Context: { controller: Devise::SessionsController, action: new, request: #<ActionDispatch::Request:0x000002a9e1565300>, params: {"authenticity_token"=>"[FILTERED]", "user"=>{"name"=>"Richard Friday", "email"=>"kini111@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in", "controller"=>"devise/sessions", "action"=>"create"} }[0m
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.6ms | Allocations: 185)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 8.2ms | Allocations: 1506)
+  Rendered layouts/_navbar.html.erb (Duration: 1.1ms | Allocations: 134)
+  Rendered layout layouts/application.html.erb (Duration: 94.1ms | Allocations: 3836)
+Completed 200 OK in 500ms (Views: 141.1ms | ActiveRecord: 0.0ms | Allocations: 4445)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2022-10-01 07:54:24 -0500
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 27.1ms | Allocations: 200)
+  Rendered devise/shared/_links.html.erb (Duration: 1.0ms | Allocations: 187)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 516.1ms | Allocations: 2463)
+  Rendered layouts/_navbar.html.erb (Duration: 1.3ms | Allocations: 199)
+  Rendered layout layouts/application.html.erb (Duration: 560.6ms | Allocations: 5060)
+Completed 200 OK in 590ms (Views: 584.2ms | ActiveRecord: 0.0ms | Allocations: 6361)
+
+
+Started POST "/users" for 127.0.0.1 at 2022-10-01 07:55:11 -0500
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"name"=>"Richard Friday", "email"=>"richy@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[36mTRANSACTION (15.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (1.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "richy@gmail.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (189.6ms)[0m  [1m[32mINSERT INTO "users" ("name", "created_at", "updated_at", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "confirmation_token", "confirmed_at", "confirmation_sent_at", "unconfirmed_email") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["name", "Richard Friday"], ["created_at", "2022-10-01 12:55:11.932154"], ["updated_at", "2022-10-01 12:55:11.932154"], ["email", "richy@gmail.com"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["confirmation_token", "[FILTERED]"], ["confirmed_at", nil], ["confirmation_sent_at", "2022-10-01 12:55:11.933989"], ["unconfirmed_email", nil]]
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mCOMMIT[0m
+  Rendering devise/mailer/confirmation_instructions.html.erb
+  Rendered devise/mailer/confirmation_instructions.html.erb (Duration: 17.2ms | Allocations: 337)
+Devise::Mailer#confirmation_instructions: processed outbound mail in 188.0ms
+Delivered mail 633838b765652_26a47b5c62cd@LAPTOP-H72U8CMC.mail (4455.6ms)
+Date: Sat, 01 Oct 2022 07:55:19 -0500
+From: please-change-me-at-config-initializers-devise@example.com
+Reply-To: please-change-me-at-config-initializers-devise@example.com
+To: richy@gmail.com
+Message-ID: <633838b765652_26a47b5c62cd@LAPTOP-H72U8CMC.mail>
+Subject: Confirmation instructions
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<p>Welcome richy@gmail.com!</p>
+
+<p>You can confirm your account email through the link below:</p>
+
+<p><a href="http://localhost:3000/users/confirmation?confirmation_token=Qxyfx_CkH7RbZLC9kRy8">Confirm my account</a></p>
+
+Redirected to http://127.0.0.1:3000/
+Completed 302 Found in 12402ms (ActiveRecord: 208.6ms | Allocations: 57853)
+
+
+Started GET "/" for 127.0.0.1 at 2022-10-01 07:55:24 -0500
+Processing by RecipesController#public as HTML
+Completed 401 Unauthorized in 7ms (ActiveRecord: 0.0ms | Allocations: 390)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2022-10-01 07:55:24 -0500
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.9ms | Allocations: 187)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 12.6ms | Allocations: 1578)
+  Rendered layouts/_navbar.html.erb (Duration: 3.9ms | Allocations: 163)
+  Rendered layout layouts/application.html.erb (Duration: 85.4ms | Allocations: 4063)
+Completed 200 OK in 164ms (Views: 150.1ms | ActiveRecord: 0.0ms | Allocations: 4774)
+
+
+Started GET "/users/confirmation?confirmation_token=[FILTERED]" for ::1 at 2022-10-01 07:56:05 -0500
+Processing by Devise::ConfirmationsController#show as HTML
+  Parameters: {"confirmation_token"=>"[FILTERED]"}
+  [1m[36mUser Load (764.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."confirmation_token" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["confirmation_token", "[FILTERED]"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Update (3516.7ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = $1, "confirmed_at" = $2 WHERE "users"."id" = $3[0m  [["updated_at", "2022-10-01 12:56:07.122593"], ["confirmed_at", "2022-10-01 12:56:07.121828"], ["id", 1]]
+  [1m[36mTRANSACTION (33.2ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/users/sign_in
+Completed 302 Found in 4353ms (ActiveRecord: 4315.4ms | Allocations: 5570)
+
+
+Started GET "/users/sign_in" for ::1 at 2022-10-01 07:56:12 -0500
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 6.8ms | Allocations: 187)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 12.7ms | Allocations: 1588)
+  Rendered layouts/_navbar.html.erb (Duration: 0.9ms | Allocations: 163)
+  Rendered layout layouts/application.html.erb (Duration: 67.1ms | Allocations: 4058)
+Completed 200 OK in 84ms (Views: 71.8ms | ActiveRecord: 0.0ms | Allocations: 4740)
+
+
+Started POST "/users/sign_in" for ::1 at 2022-10-01 07:56:48 -0500
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"name"=>"Richard Friday", "email"=>"richy@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (160.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "richy@gmail.com"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 515ms (ActiveRecord: 160.7ms | Allocations: 2602)
+
+
+Started GET "/" for ::1 at 2022-10-01 07:56:48 -0500
+Processing by RecipesController#public as HTML
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering recipes/public.html.erb within layouts/application
+  [1m[36mRecipe Load (26.6ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."public" = $1[0m  [["public", true]]
+  ↳ app/views/shared/_recipelist.html.erb:2
+  Rendered shared/_recipelist.html.erb (Duration: 85.4ms | Allocations: 1077)
+  Rendered recipes/public.html.erb within layouts/application (Duration: 164.1ms | Allocations: 1348)
+  Rendered layouts/_navbar.html.erb (Duration: 1.5ms | Allocations: 521)
+  Rendered layout layouts/application.html.erb (Duration: 202.8ms | Allocations: 4338)
+Completed 200 OK in 1025ms (Views: 198.9ms | ActiveRecord: 32.1ms | Allocations: 15724)
+
+
+Started GET "/recipes/new" for ::1 at 2022-10-01 07:57:01 -0500
+Processing by RecipesController#new as HTML
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering recipes/new.html.erb within layouts/application
+  Rendered recipes/new.html.erb within layouts/application (Duration: 150.3ms | Allocations: 6817)
+  Rendered layouts/_navbar.html.erb (Duration: 1.2ms | Allocations: 423)
+  Rendered layout layouts/application.html.erb (Duration: 400.7ms | Allocations: 9465)
+Completed 200 OK in 1022ms (Views: 616.0ms | ActiveRecord: 4.2ms | Allocations: 14819)
+
+
+Started GET "/recipes/new" for ::1 at 2022-10-01 07:57:05 -0500
+Processing by RecipesController#new as HTML
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering recipes/new.html.erb within layouts/application
+  Rendered recipes/new.html.erb within layouts/application (Duration: 13.9ms | Allocations: 5325)
+  Rendered layouts/_navbar.html.erb (Duration: 1.7ms | Allocations: 423)
+  Rendered layout layouts/application.html.erb (Duration: 61.0ms | Allocations: 7958)
+Completed 200 OK in 93ms (Views: 64.1ms | ActiveRecord: 1.3ms | Allocations: 9632)
+
+
+Started GET "/recipes/new" for ::1 at 2022-10-01 07:57:08 -0500
+Processing by RecipesController#new as HTML
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering recipes/new.html.erb within layouts/application
+  Rendered recipes/new.html.erb within layouts/application (Duration: 10.6ms | Allocations: 5325)
+  Rendered layouts/_navbar.html.erb (Duration: 1.2ms | Allocations: 423)
+  Rendered layout layouts/application.html.erb (Duration: 53.9ms | Allocations: 7963)
+Completed 200 OK in 73ms (Views: 57.6ms | ActiveRecord: 1.0ms | Allocations: 9625)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2022-10-01 07:57:16 -0500
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.9ms | Allocations: 185)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 17.3ms | Allocations: 1536)
+  Rendered layouts/_navbar.html.erb (Duration: 1.1ms | Allocations: 168)
+  Rendered layout layouts/application.html.erb (Duration: 86.4ms | Allocations: 3916)
+Completed 200 OK in 168ms (Views: 158.3ms | ActiveRecord: 0.0ms | Allocations: 4549)
+
+
+Started GET "/" for ::1 at 2022-10-01 07:57:20 -0500
+Processing by RecipesController#public as HTML
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering recipes/public.html.erb within layouts/application
+  [1m[36mRecipe Load (0.7ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."public" = $1[0m  [["public", true]]
+  ↳ app/views/shared/_recipelist.html.erb:2
+  Rendered shared/_recipelist.html.erb (Duration: 5.4ms | Allocations: 608)
+  Rendered recipes/public.html.erb within layouts/application (Duration: 6.7ms | Allocations: 673)
+  Rendered layouts/_navbar.html.erb (Duration: 1.1ms | Allocations: 440)
+  Rendered layout layouts/application.html.erb (Duration: 43.2ms | Allocations: 3324)
+Completed 200 OK in 72ms (Views: 47.1ms | ActiveRecord: 1.8ms | Allocations: 4986)
+
+
+Started GET "/foods" for ::1 at 2022-10-01 07:57:23 -0500
+Processing by FoodsController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering foods/index.html.erb within layouts/application
+  [1m[36mFood Load (6.4ms)[0m  [1m[34mSELECT "foods".* FROM "foods"[0m
+  ↳ app/views/foods/index.html.erb:16
+  Rendered foods/index.html.erb within layouts/application (Duration: 203.8ms | Allocations: 1078)
+  Rendered layouts/_navbar.html.erb (Duration: 1.2ms | Allocations: 475)
+  Rendered layout layouts/application.html.erb (Duration: 335.2ms | Allocations: 3999)
+Completed 200 OK in 971ms (Views: 372.8ms | ActiveRecord: 7.0ms | Allocations: 8451)
+
+
+Started GET "/foods/new" for ::1 at 2022-10-01 07:57:29 -0500
+Processing by FoodsController#new as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering foods/new.html.erb within layouts/application
+  Rendered foods/new.html.erb within layouts/application (Duration: 3795.4ms | Allocations: 1974)
+  Rendered layouts/_navbar.html.erb (Duration: 1.3ms | Allocations: 444)
+  Rendered layout layouts/application.html.erb (Duration: 3972.7ms | Allocations: 4772)
+Completed 200 OK in 4125ms (Views: 4094.1ms | ActiveRecord: 7.3ms | Allocations: 9396)
+
+
+Started POST "/foods" for ::1 at 2022-10-01 07:57:42 -0500
+Processing by FoodsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "food"=>{"name"=>"dfgr", "measurement_unit"=>"44", "price"=>"42"}, "commit"=>"Create Food"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/foods_controller.rb:17:in `create'
+  [1m[36mFood Create (127.7ms)[0m  [1m[32mINSERT INTO "foods" ("name", "measurement_unit", "price", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "dfgr"], ["measurement_unit", 44], ["price", 42], ["created_at", "2022-10-01 12:57:43.659455"], ["updated_at", "2022-10-01 12:57:43.659455"], ["user_id", 1]]
+  ↳ app/controllers/foods_controller.rb:17:in `create'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/foods_controller.rb:17:in `create'
+Redirected to http://localhost:3000/foods
+Completed 302 Found in 433ms (ActiveRecord: 130.4ms | Allocations: 5373)
+
+
+Started GET "/foods" for ::1 at 2022-10-01 07:57:44 -0500
+Processing by FoodsController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering foods/index.html.erb within layouts/application
+  [1m[36mFood Load (0.9ms)[0m  [1m[34mSELECT "foods".* FROM "foods"[0m
+  ↳ app/views/foods/index.html.erb:16
+  Rendered foods/index.html.erb within layouts/application (Duration: 25.7ms | Allocations: 945)
+  Rendered layouts/_navbar.html.erb (Duration: 1.2ms | Allocations: 433)
+  Rendered layout layouts/application.html.erb (Duration: 98.0ms | Allocations: 3712)
+Completed 200 OK in 120ms (Views: 100.6ms | ActiveRecord: 1.3ms | Allocations: 5535)
+
+
+Started GET "/foods" for ::1 at 2022-10-01 07:57:52 -0500
+Processing by FoodsController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering foods/index.html.erb within layouts/application
+  [1m[36mFood Load (0.8ms)[0m  [1m[34mSELECT "foods".* FROM "foods"[0m
+  ↳ app/views/foods/index.html.erb:16
+  Rendered foods/index.html.erb within layouts/application (Duration: 11.4ms | Allocations: 879)
+  Rendered layouts/_navbar.html.erb (Duration: 1.3ms | Allocations: 432)
+  Rendered layout layouts/application.html.erb (Duration: 47.0ms | Allocations: 3537)
+Completed 200 OK in 72ms (Views: 50.6ms | ActiveRecord: 1.5ms | Allocations: 5180)
+
+
+Started GET "/foods" for ::1 at 2022-10-01 08:01:17 -0500
+Processing by FoodsController#index as HTML
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering foods/index.html.erb within layouts/application
+  [1m[36mFood Load (0.9ms)[0m  [1m[34mSELECT "foods".* FROM "foods"[0m
+  ↳ app/views/foods/index.html.erb:16
+  Rendered foods/index.html.erb within layouts/application (Duration: 8.6ms | Allocations: 879)
+  Rendered layouts/_navbar.html.erb (Duration: 1.6ms | Allocations: 432)
+  Rendered layout layouts/application.html.erb (Duration: 5581.9ms | Allocations: 6423)
+Completed 200 OK in 5790ms (Views: 5768.5ms | ActiveRecord: 1.9ms | Allocations: 8070)
+
+
+Started GET "/inventories" for ::1 at 2022-10-01 08:02:25 -0500
+Processing by InventoriesController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering inventories/index.html.erb within layouts/application
+  [1m[36mInventory Exists? (18.9ms)[0m  [1m[34mSELECT 1 AS one FROM "inventories" WHERE "inventories"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  ↳ app/views/inventories/index.html.erb:2
+  Rendered inventories/index.html.erb within layouts/application (Duration: 560.6ms | Allocations: 2221)
+  Rendered layouts/_navbar.html.erb (Duration: 1.3ms | Allocations: 463)
+  Rendered layout layouts/application.html.erb (Duration: 608.0ms | Allocations: 5150)
+Completed 200 OK in 1187ms (Views: 624.7ms | ActiveRecord: 22.1ms | Allocations: 9980)
+
+
+Started GET "/recipes/new" for ::1 at 2022-10-01 08:02:32 -0500
+Processing by RecipesController#new as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering recipes/new.html.erb within layouts/application
+  Rendered recipes/new.html.erb within layouts/application (Duration: 9.4ms | Allocations: 5384)
+  Rendered layouts/_navbar.html.erb (Duration: 1.4ms | Allocations: 423)
+  Rendered layout layouts/application.html.erb (Duration: 51.8ms | Allocations: 8018)
+Completed 200 OK in 76ms (Views: 58.7ms | ActiveRecord: 0.5ms | Allocations: 9829)
+
+
+Started POST "/recipes/new" for ::1 at 2022-10-01 08:02:49 -0500
+  
+ActionController::RoutingError (No route matches [POST] "/recipes/new"):
+  
+Started POST "/recipes/new" for ::1 at 2022-10-01 08:06:30 -0500
+  
+ActionController::RoutingError (No route matches [POST] "/recipes/new"):
+  
+Started POST "/recipes/new" for ::1 at 2022-10-01 08:08:13 -0500
+Processing by RecipesController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "name"=>"ric", "preparation_time"=>"34", "cooking_time"=>"32", "description"=>"addd", "public"=>"1", "commit"=>"Create Recipe"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[31mUnpermitted parameters: :authenticity_token, :commit. Context: { controller: RecipesController, action: create, request: #<ActionDispatch::Request:0x000002a9e10a0090>, params: {"authenticity_token"=>"[FILTERED]", "name"=>"ric", "preparation_time"=>"34", "cooking_time"=>"32", "description"=>"addd", "public"=>"1", "commit"=>"Create Recipe", "controller"=>"recipes", "action"=>"create"} }[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/recipes_controller.rb:32:in `create'
+  [1m[36mRecipe Create (15.7ms)[0m  [1m[32mINSERT INTO "recipes" ("name", "preparation_time", "cooking_time", "description", "public", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "ric"], ["preparation_time", "34"], ["cooking_time", "32"], ["description", "addd"], ["public", true], ["created_at", "2022-10-01 13:08:39.740364"], ["updated_at", "2022-10-01 13:08:39.740364"], ["user_id", 1]]
+  ↳ app/controllers/recipes_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/recipes_controller.rb:32:in `create'
+Redirected to http://localhost:3000/recipes
+Completed 302 Found in 430ms (ActiveRecord: 43.8ms | Allocations: 12593)
+
+
+Started GET "/recipes" for ::1 at 2022-10-01 08:08:40 -0500
+Processing by RecipesController#index as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (13.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/shared/_recipelist.html.erb:2
+  Rendered shared/_recipelist.html.erb (Duration: 140.7ms | Allocations: 2559)
+  Rendered recipes/index.html.erb within layouts/application (Duration: 298.8ms | Allocations: 2847)
+  Rendered layouts/_navbar.html.erb (Duration: 31.7ms | Allocations: 778)
+  Rendered layout layouts/application.html.erb (Duration: 785.3ms | Allocations: 6390)
+Completed 200 OK in 1045ms (Views: 945.5ms | ActiveRecord: 14.2ms | Allocations: 9353)
+
+
+Started GET "/recipes/1" for ::1 at 2022-10-01 08:09:53 -0500
+Processing by RecipesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mRecipe Load (1.0ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering recipes/show.html.erb within layouts/application
+  [1m[36mInventory Load (0.8ms)[0m  [1m[34mSELECT "inventories".* FROM "inventories"[0m
+  ↳ app/views/recipes/show.html.erb:26
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/recipes/show.html.erb:41
+  [1m[36mRecipeFood Load (64.9ms)[0m  [1m[34mSELECT "recipe_foods".* FROM "recipe_foods" WHERE "recipe_foods"."recipe_id" = $1[0m  [["recipe_id", 1]]
+  ↳ app/views/recipes/show.html.erb:56
+  Rendered recipes/show.html.erb within layouts/application (Duration: 349.1ms | Allocations: 4913)
+  Rendered layouts/_navbar.html.erb (Duration: 1.1ms | Allocations: 428)
+  Rendered layout layouts/application.html.erb (Duration: 388.1ms | Allocations: 7687)
+Completed 200 OK in 1210ms (Views: 327.9ms | ActiveRecord: 73.7ms | Allocations: 21547)
+
+
+Started GET "/" for ::1 at 2022-10-01 08:10:31 -0500
+Processing by RecipesController#public as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering recipes/public.html.erb within layouts/application
+  [1m[36mRecipe Load (0.9ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."public" = $1[0m  [["public", true]]
+  ↳ app/views/shared/_recipelist.html.erb:2
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/shared/_recipelist.html.erb:8
+  Rendered shared/_recipelist.html.erb (Duration: 16.0ms | Allocations: 1733)
+  Rendered recipes/public.html.erb within layouts/application (Duration: 18.7ms | Allocations: 1891)
+  Rendered layouts/_navbar.html.erb (Duration: 1.1ms | Allocations: 422)
+  Rendered layout layouts/application.html.erb (Duration: 59.6ms | Allocations: 4524)
+Completed 200 OK in 89ms (Views: 67.6ms | ActiveRecord: 2.2ms | Allocations: 6329)
+
+
+Started GET "/recipes" for ::1 at 2022-10-01 08:10:35 -0500
+Processing by RecipesController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (1.0ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/shared/_recipelist.html.erb:2
+  Rendered shared/_recipelist.html.erb (Duration: 675.5ms | Allocations: 1015)
+  Rendered recipes/index.html.erb within layouts/application (Duration: 676.6ms | Allocations: 1082)
+  Rendered layouts/_navbar.html.erb (Duration: 1.0ms | Allocations: 422)
+  Rendered layout layouts/application.html.erb (Duration: 1268.1ms | Allocations: 3817)
+Completed 200 OK in 1350ms (Views: 1334.2ms | ActiveRecord: 1.5ms | Allocations: 5476)
+
+
+Started GET "/foods" for ::1 at 2022-10-01 08:10:42 -0500
+Processing by FoodsController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering foods/index.html.erb within layouts/application
+  [1m[36mFood Load (0.6ms)[0m  [1m[34mSELECT "foods".* FROM "foods"[0m
+  ↳ app/views/foods/index.html.erb:16
+  Rendered foods/index.html.erb within layouts/application (Duration: 52.7ms | Allocations: 3306)
+  Rendered layouts/_navbar.html.erb (Duration: 0.9ms | Allocations: 458)
+  Rendered layout layouts/application.html.erb (Duration: 86.0ms | Allocations: 6179)
+Completed 200 OK in 192ms (Views: 97.9ms | ActiveRecord: 7.2ms | Allocations: 10285)
+
+
+Started GET "/recipes/new" for ::1 at 2022-10-01 08:10:45 -0500
+Processing by RecipesController#new as HTML
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering recipes/new.html.erb within layouts/application
+  Rendered recipes/new.html.erb within layouts/application (Duration: 323.4ms | Allocations: 6791)
+  Rendered layouts/_navbar.html.erb (Duration: 0.8ms | Allocations: 423)
+  Rendered layout layouts/application.html.erb (Duration: 350.0ms | Allocations: 9435)
+Completed 200 OK in 376ms (Views: 359.5ms | ActiveRecord: 1.8ms | Allocations: 11319)
+
+
+Started GET "/inventories" for ::1 at 2022-10-01 08:10:48 -0500
+Processing by InventoriesController#index as HTML
+  [1m[36mUser Load (2.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering inventories/index.html.erb within layouts/application
+  [1m[36mInventory Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "inventories" WHERE "inventories"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  ↳ app/views/inventories/index.html.erb:2
+  Rendered inventories/index.html.erb within layouts/application (Duration: 1157.3ms | Allocations: 1750)
+  Rendered layouts/_navbar.html.erb (Duration: 0.9ms | Allocations: 463)
+  Rendered layout layouts/application.html.erb (Duration: 1203.6ms | Allocations: 4657)
+Completed 200 OK in 1247ms (Views: 1215.9ms | ActiveRecord: 9.2ms | Allocations: 7528)
+
+
+Started GET "/inventories" for ::1 at 2022-10-01 08:18:35 -0500
+Processing by InventoriesController#index as HTML
+  [1m[36mUser Load (86.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering inventories/index.html.erb within layouts/application
+  [1m[36mInventory Exists? (5.5ms)[0m  [1m[34mSELECT 1 AS one FROM "inventories" WHERE "inventories"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  ↳ app/views/inventories/index.html.erb:2
+  Rendered inventories/index.html.erb within layouts/application (Duration: 40.0ms | Allocations: 738)
+  Rendered layouts/_navbar.html.erb (Duration: 1.2ms | Allocations: 423)
+  Rendered layout layouts/application.html.erb (Duration: 82.4ms | Allocations: 3386)
+Completed 200 OK in 9115ms (Views: 84.1ms | ActiveRecord: 3596.7ms | Allocations: 8253)
+
+
+Started GET "/foods" for ::1 at 2022-10-01 08:22:16 -0500
+Processing by FoodsController#index as HTML
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering foods/index.html.erb within layouts/application
+  [1m[36mFood Load (5.8ms)[0m  [1m[34mSELECT "foods".* FROM "foods"[0m
+  ↳ app/views/foods/index.html.erb:16
+  Rendered foods/index.html.erb within layouts/application (Duration: 20.9ms | Allocations: 884)
+  Rendered layouts/_navbar.html.erb (Duration: 3.7ms | Allocations: 432)
+  Rendered layout layouts/application.html.erb (Duration: 270.9ms | Allocations: 3534)
+Completed 200 OK in 304ms (Views: 270.2ms | ActiveRecord: 7.4ms | Allocations: 5185)
+
+
+Started GET "/recipes/new" for ::1 at 2022-10-01 08:22:20 -0500
+Processing by RecipesController#new as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering recipes/new.html.erb within layouts/application
+  Rendered recipes/new.html.erb within layouts/application (Duration: 259.3ms | Allocations: 5381)
+  Rendered layouts/_navbar.html.erb (Duration: 1.5ms | Allocations: 423)
+  Rendered layout layouts/application.html.erb (Duration: 315.2ms | Allocations: 8015)
+Completed 200 OK in 619ms (Views: 588.6ms | ActiveRecord: 0.8ms | Allocations: 9676)
+
+
+Started POST "/recipes/new" for ::1 at 2022-10-01 08:23:05 -0500
+Processing by RecipesController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "name"=>"indomi", "preparation_time"=>"3min", "cooking_time"=>"3min", "description"=>"fast food", "public"=>"1", "commit"=>"Create Recipe"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[31mUnpermitted parameters: :authenticity_token, :commit. Context: { controller: RecipesController, action: create, request: #<ActionDispatch::Request:0x000002a9e10a3380>, params: {"authenticity_token"=>"[FILTERED]", "name"=>"indomi", "preparation_time"=>"3min", "cooking_time"=>"3min", "description"=>"fast food", "public"=>"1", "commit"=>"Create Recipe", "controller"=>"recipes", "action"=>"create"} }[0m
+  [1m[36mTRANSACTION (150.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/recipes_controller.rb:32:in `create'
+  [1m[36mRecipe Create (2654.1ms)[0m  [1m[32mINSERT INTO "recipes" ("name", "preparation_time", "cooking_time", "description", "public", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "indomi"], ["preparation_time", "3min"], ["cooking_time", "3min"], ["description", "fast food"], ["public", true], ["created_at", "2022-10-01 13:23:07.021413"], ["updated_at", "2022-10-01 13:23:07.021413"], ["user_id", 1]]
+  ↳ app/controllers/recipes_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (5.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/recipes_controller.rb:32:in `create'
+Redirected to http://localhost:3000/recipes
+Completed 302 Found in 5419ms (ActiveRecord: 2811.1ms | Allocations: 3729)
+
+
+Started GET "/recipes" for ::1 at 2022-10-01 08:23:12 -0500
+Processing by RecipesController#index as HTML
+  [1m[36mUser Load (16.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (1841.1ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/shared/_recipelist.html.erb:2
+  Rendered shared/_recipelist.html.erb (Duration: 1862.5ms | Allocations: 1365)
+  Rendered recipes/index.html.erb within layouts/application (Duration: 1868.8ms | Allocations: 1432)
+  Rendered layouts/_navbar.html.erb (Duration: 8.5ms | Allocations: 422)
+  Rendered layout layouts/application.html.erb (Duration: 2316.4ms | Allocations: 4070)
+Completed 200 OK in 2429ms (Views: 547.6ms | ActiveRecord: 1857.3ms | Allocations: 5753)
+
+
+Started GET "/inventories" for ::1 at 2022-10-01 08:25:00 -0500
+Processing by InventoriesController#index as HTML
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering inventories/index.html.erb within layouts/application
+  [1m[36mInventory Exists? (0.9ms)[0m  [1m[34mSELECT 1 AS one FROM "inventories" WHERE "inventories"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  ↳ app/views/inventories/index.html.erb:2
+  Rendered inventories/index.html.erb within layouts/application (Duration: 26.4ms | Allocations: 714)
+  Rendered layouts/_navbar.html.erb (Duration: 1.6ms | Allocations: 423)
+  Rendered layout layouts/application.html.erb (Duration: 497.5ms | Allocations: 3347)
+Completed 200 OK in 847ms (Views: 762.7ms | ActiveRecord: 1.9ms | Allocations: 5027)
+
+
+Started GET "/recipes/new" for ::1 at 2022-10-01 08:35:46 -0500
+Processing by RecipesController#new as HTML
+  [1m[36mUser Load (103.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering recipes/new.html.erb within layouts/application
+  Rendered recipes/new.html.erb within layouts/application (Duration: 252.9ms | Allocations: 5325)
+  Rendered layouts/_navbar.html.erb (Duration: 1.2ms | Allocations: 423)
+  Rendered layout layouts/application.html.erb (Duration: 610.6ms | Allocations: 7973)
+Completed 200 OK in 4684ms (Views: 614.0ms | ActiveRecord: 2471.8ms | Allocations: 12546)
+
+
+Started POST "/recipes/new" for ::1 at 2022-10-01 08:36:17 -0500
+Processing by RecipesController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "name"=>"beans", "preparation_time"=>"2hrs", "cooking_time"=>"2hrs", "description"=>"slow", "public"=>"1", "commit"=>"Create Recipe"}
+  [1m[36mUser Load (24.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[31mUnpermitted parameters: :authenticity_token, :commit. Context: { controller: RecipesController, action: create, request: #<ActionDispatch::Request:0x000002a9dee06318>, params: {"authenticity_token"=>"[FILTERED]", "name"=>"beans", "preparation_time"=>"2hrs", "cooking_time"=>"2hrs", "description"=>"slow", "public"=>"1", "commit"=>"Create Recipe", "controller"=>"recipes", "action"=>"create"} }[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/recipes_controller.rb:32:in `create'
+  [1m[36mRecipe Create (571.3ms)[0m  [1m[32mINSERT INTO "recipes" ("name", "preparation_time", "cooking_time", "description", "public", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "beans"], ["preparation_time", "2hrs"], ["cooking_time", "2hrs"], ["description", "slow"], ["public", true], ["created_at", "2022-10-01 13:36:18.608537"], ["updated_at", "2022-10-01 13:36:18.608537"], ["user_id", 1]]
+  ↳ app/controllers/recipes_controller.rb:32:in `create'
+  [1m[36mTRANSACTION (9.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/recipes_controller.rb:32:in `create'
+Redirected to http://localhost:3000/recipes
+Completed 302 Found in 1746ms (ActiveRecord: 606.7ms | Allocations: 3651)
+
+
+Started GET "/recipes" for ::1 at 2022-10-01 08:36:20 -0500
+Processing by RecipesController#index as HTML
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (40.5ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/shared/_recipelist.html.erb:2
+  Rendered shared/_recipelist.html.erb (Duration: 223.1ms | Allocations: 1667)
+  Rendered recipes/index.html.erb within layouts/application (Duration: 226.7ms | Allocations: 1734)
+  Rendered layouts/_navbar.html.erb (Duration: 1.7ms | Allocations: 422)
+  Rendered layout layouts/application.html.erb (Duration: 455.3ms | Allocations: 4372)
+Completed 200 OK in 713ms (Views: 422.2ms | ActiveRecord: 41.9ms | Allocations: 6096)
+
+
+Started GET "/foods" for ::1 at 2022-10-01 08:41:59 -0500
+Processing by FoodsController#index as HTML
+  [1m[36mUser Load (517.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering foods/index.html.erb within layouts/application
+  [1m[36mFood Load (581.7ms)[0m  [1m[34mSELECT "foods".* FROM "foods"[0m
+  ↳ app/views/foods/index.html.erb:16
+  Rendered foods/index.html.erb within layouts/application (Duration: 2804.2ms | Allocations: 904)
+  Rendered layouts/_navbar.html.erb (Duration: 426.4ms | Allocations: 432)
+  Rendered layout layouts/application.html.erb (Duration: 51707.2ms | Allocations: 3672)
+Completed 200 OK in 68418ms (Views: 51293.3ms | ActiveRecord: 3885.0ms | Allocations: 8234)
+
+

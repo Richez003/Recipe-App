@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class InventoryFoodsController < ApplicationController
   before_action :set_inventory
 
@@ -20,13 +22,13 @@ class InventoryFoodsController < ApplicationController
   end
 
   def destroy
-      @inventory_food = InventoryFood.find(params[:id])
-      @inventory_food.destroy
+    @inventory_food = InventoryFood.find(params[:id])
+    @inventory_food.destroy
 
-      respond_to do |format|
-        format.html { redirect_to inventory_path(@inventory.id), notice: 'Inventory food was successfully destroyed.' }
-        format.json { head :no_content }
-      end
+    respond_to do |format|
+      format.html { redirect_to inventory_path(@inventory.id), notice: 'Inventory food was successfully destroyed.' }
+      format.json { head :no_content }
+    end
   end
 
   private
