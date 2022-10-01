@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'shopping_lists/index'
   devise_for :users
   root "recipes#public"
   match 'public_recipes' => 'public_recipes#index', as: :public_recipes, via: :get
@@ -14,4 +13,12 @@ Rails.application.routes.draw do
   resources :inventories do
     resources :inventory_foods
   end
+
+  resource :shopping_lists, only: [:index]
+  get 'recipes/:recipe_id/generate_shopping_list', :to => 'shopping_lists#new'
+  post 'recipes/:recipe_id/generate_shopping_list', :to => 'shopping_lists#create'
+  get 'shopping_list/:recipe_id/:inventory_id', :to => 'shopping_lists#index'
+  post 'recipes/new', :to => 'recipes#create'
+  post 'recipes/:recipe_id/recipe_food/new', :to => 'recipe_foods#new'
+  # Defines the root path route ("/")
 end
